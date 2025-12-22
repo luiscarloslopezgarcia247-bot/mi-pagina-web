@@ -6,44 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historia del Mundo</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a la Página de Historia</h1>
-        <nav>
-            <ul>
-                <li><a href="#antigua">Historia Antigua</a></li>
-                <li><a href="#medieval">Historia Medieval</a></li>
-                <li><a href="#moderna">Historia Moderna</a></li>
-            </ul>
-        </nav>
+    <header class="bg-gradient-primary text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4 font-weight-bold">Bienvenido a la Página de Historia</h1>
+            <nav class="mt-4">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item"><a class="nav-link text-white" href="#antigua">Historia Antigua</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#medieval">Historia Medieval</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#moderna">Historia Moderna</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section id="antigua" class="section-card">
-            <h2>Historia Antigua</h2>
-            <p>La historia antigua abarca desde la invención de la escritura hasta la caída del Imperio Romano de Occidente en el año 476 d.C. Incluye civilizaciones como Egipto, Grecia y Roma.</p>
-            <img src="https://www.egypttoursportal.com/images/2025/07/Ancient-Egyptian-Civilization-Transfer-to-Hellenistic-Rule-Egypt-Tours-Portal_1.jpg" alt="Historia Antigua - Civilización Egipcia y Romana">
+    <main class="container my-5">
+        <section id="antigua" class="card mb-5 shadow-lg">
+            <div class="card-body">
+                <h2 class="card-title">Historia Antigua</h2>
+                <p class="card-text">La historia antigua abarca desde la invención de la escritura hasta la caída del Imperio Romano de Occidente en el año 476 d.C. Incluye civilizaciones como Egipto, Grecia y Roma.</p>
+                <img src="https://media.licdn.com/dms/image/v2/D5612AQF6ymN912imnA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1729735161415?e=2147483647&v=beta&t=5CUD0hEJz9oUqMKqwEVhsZHJoQf8aU8BEkkCQy71TVM" class="card-img-bottom rounded" alt="Historia Antigua - Civilizaciones Egipcia, Griega y Romana">
+            </div>
         </section>
 
-        <section id="medieval" class="section-card">
-            <h2>Historia Medieval</h2>
-            <p>La Edad Media se extiende desde el siglo V hasta el XV. Incluye eventos como las Cruzadas, la Peste Negra y el feudalismo en Europa.</p>
-            <img src="https://www.mediastorehouse.com/p/473/medieval-castle-5880535.jpg.webp" alt="Historia Medieval - Castillo y Caballeros">
+        <section id="medieval" class="card mb-5 shadow-lg">
+            <div class="card-body">
+                <h2 class="card-title">Historia Medieval</h2>
+                <p class="card-text">La Edad Media se extiende desde el siglo V hasta el XV. Incluye eventos como las Cruzadas, la Peste Negra y el feudalismo en Europa.</p>
+                <img src="https://static.vecteezy.com/system/resources/previews/054/375/985/large_2x/medieval-knights-in-armor-by-the-castle-wall-photo.jpeg" class="card-img-bottom rounded" alt="Historia Medieval - Castillos y Caballeros en Europa">
+            </div>
         </section>
 
-        <section id="moderna" class="section-card">
-            <h2>Historia Moderna</h2>
-            <p>La historia moderna cubre desde el Renacimiento hasta la Revolución Industrial. Incluye descubrimientos, colonizaciones y avances científicos.</p>
-            <img src="https://miro.medium.com/1*mrNRT25ZxDszrCaVdk6tiA.jpeg" alt="Historia Moderna - Revolución Industrial">
+        <section id="moderna" class="card mb-5 shadow-lg">
+            <div class="card-body">
+                <h2 class="card-title">Historia Moderna</h2>
+                <p class="card-text">La historia moderna cubre desde el Renacimiento hasta la Revolución Industrial. Incluye descubrimientos, colonizaciones y avances científicos.</p>
+                <img src="http://res.cloudinary.com/aenetworks/image/upload/v1737659929/second_industrial_revolution_gettyimages-51632462-1.jpg" class="card-img-bottom rounded" alt="Historia Moderna - Renacimiento y Revolución Industrial">
+            </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 Página de Historia. Todos los derechos reservados.</p>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
