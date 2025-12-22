@@ -1,4 +1,3 @@
-
 function mostrar(seccion) {
   let contenido = document.getElementById("contenido");
 
