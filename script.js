@@ -29,5 +29,15 @@ function mostrar(seccion) {
 
   else if (seccion === "moderna") {
     contenido.innerHTML = `
-      <h2>Historia Moderna
-      
+      <h2>Historia Moderna</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Prise_de_la_Bastille.jpg" width="300">
+      <p>La historia moderna incluye revoluciones, descubrimientos y el inicio del mundo contemporáneo.</p>
+      <ul>
+        <li>Renacimiento y descubrimientos</li>
+        <li>Revolución Francesa</li>
+        <li>Industrialización</li>
+      </ul>
+    `;
+  }
+}
+
