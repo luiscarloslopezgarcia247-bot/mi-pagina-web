@@ -1,15 +1,48 @@
 
-<<body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia del Mundo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
     <header>
-      <h1>Historia con Luis Carlos</h1>
-      <p class="subtitulo">Explorando el pasado desde lo épico hasta lo cotidiano</p>
+        <h1>Bienvenido a la Página de Historia</h1>
+        <nav>
+            <ul>
+                <li><a href="#antigua">Historia Antigua</a></li>
+                <li><a href="#medieval">Historia Medieval</a></li>
+                <li><a href="#moderna">Historia Moderna</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <button onclick="mostrar('antigua')">Historia Antigua</button>
-    <button onclick="mostrar('medieval')">Edad Media</button>
-    <button onclick="mostrar('moderna')">Historia Moderna</button>
+    <main>
+        <section id="antigua">
+            <h2>Historia Antigua</h2>
+            <p>La historia antigua abarca desde la invención de la escritura hasta la caída del Imperio Romano de Occidente en el año 476 d.C. Incluye civilizaciones como Egipto, Grecia y Roma.</p>
+            <img src="https://via.placeholder.com/400x200?text=Historia+Antigua" alt="Imagen de Historia Antigua">
+        </section>
 
-    <div id="contenido"></div>
+        <section id="medieval">
+            <h2>Historia Medieval</h2>
+            <p>La Edad Media se extiende desde el siglo V hasta el XV. Incluye eventos como las Cruzadas, la Peste Negra y el feudalismo en Europa.</p>
+            <img src="https://via.placeholder.com/400x200?text=Historia+Medieval" alt="Imagen de Historia Medieval">
+        </section>
+
+        <section id="moderna">
+            <h2>Historia Moderna</h2>
+            <p>La historia moderna cubre desde el Renacimiento hasta la Revolución Industrial. Incluye descubrimientos, colonizaciones y avances científicos.</p>
+            <img src="https://via.placeholder.com/400x200?text=Historia+Moderna" alt="Imagen de Historia Moderna">
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Página de Historia. Todos los derechos reservados.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
+</html>
