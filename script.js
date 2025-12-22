@@ -17,7 +17,7 @@ function mostrar(seccion) {
   else if (seccion === "medieval") {
     contenido.innerHTML = `
       <h2>Edad Media</h2>
-      <img src="imagenes/medieval.jpg" width="300">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Castillo_de_Pe%C3%B1afiel.jpg" width="300">
       <p>La Edad Media se caracteriza por castillos, cruzadas y el feudalismo.</p>
       <ul>
         <li>Castillos y caballeros</li>
@@ -30,7 +30,7 @@ function mostrar(seccion) {
   else if (seccion === "moderna") {
     contenido.innerHTML = `
       <h2>Historia Moderna</h2>
-      <img src="imagenes/moderna.jpg" width="300">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Prise_de_la_Bastille.jpg" width="300">
       <p>La historia moderna incluye revoluciones, descubrimientos y el inicio del mundo contemporáneo.</p>
       <ul>
         <li>Renacimiento y descubrimientos</li>
@@ -40,3 +40,4 @@ function mostrar(seccion) {
     `;
   }
 }
+
