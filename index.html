@@ -85,6 +85,94 @@
             margin-bottom: 20px;
         }
 
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        details {
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        summary {
+            font-weight: bold;
+            color: #4c6784;
+            margin-bottom: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #4c6784;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #2c3e50;
+            border: 4px solid #f0f4f8;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+            right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                text-align: left;
+                left: 0 !important;
+            }
+
+            .timeline-item::before {
+                left: 20px !important;
+                right: auto !important;
+            }
+        }
+
         img {
             max-width: 100%;
             height: auto;
@@ -138,30 +226,159 @@
         <h1>Bienvenido a la Página de Historia</h1>
         <nav>
             <ul>
+                <li><a href="#prehistoria">Prehistoria</a></li>
                 <li><a href="#antigua">Historia Antigua</a></li>
                 <li><a href="#medieval">Historia Medieval</a></li>
                 <li><a href="#moderna">Historia Moderna</a></li>
+                <li><a href="#contemporanea">Historia Contemporánea</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <section id="prehistoria" class="section-card">
+            <h2>Prehistoria</h2>
+            <p>La prehistoria es el período que abarca desde la aparición de los primeros homínidos hasta la invención de la escritura alrededor del 3000 a.C. Se divide en Paleolítico, Mesolítico y Neolítico, marcado por la evolución humana, el uso de herramientas y el desarrollo de sociedades cazadoras-recolectoras.</p>
+            <details>
+                <summary>Eventos Clave</summary>
+                <ul>
+                    <li>Aparición de Homo sapiens (hace unos 300,000 años).</li>
+                    <li>Revolución Neolítica: Agricultura y domesticación de animales (hace 10,000 años).</li>
+                    <li>Arte rupestre en cuevas como Lascaux y Altamira.</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Figuras Importantes</summary>
+                <ul>
+                    <li>Lucy (Australopithecus afarensis), fósil clave en la evolución humana.</li>
+                    <li>Neandertales, contemporáneos de los Homo sapiens.</li>
+                </ul>
+            </details>
+            <div class="timeline">
+                <div class="timeline-item"><strong>2.5M a.C.</strong> - Primeras herramientas de piedra.</div>
+                <div class="timeline-item"><strong>200,000 a.C.</strong> - Aparición de Homo sapiens en África.</div>
+                <div class="timeline-item"><strong>10,000 a.C.</strong> - Fin de la última Edad de Hielo.</div>
+            </div>
+            <img src="https://res.cloudinary.com/aenetworks/image/upload/c_fill,w_1200,h_630,g_auto/dpr_auto/f_auto/q_auto:eco/v1/human-evolution-gettyimages-122223741" alt="Prehistoria - Evolución Humana y Herramientas de Piedra">
+        </section>
+
         <section id="antigua" class="section-card">
             <h2>Historia Antigua</h2>
-            <p>La historia antigua abarca desde la invención de la escritura hasta la caída del Imperio Romano de Occidente en el año 476 d.C. Incluye civilizaciones como Egipto, Grecia y Roma.</p>
+            <p>La historia antigua abarca desde la invención de la escritura hasta la caída del Imperio Romano de Occidente en el año 476 d.C. Incluye civilizaciones como Egipto, Grecia y Roma, con avances en escritura, arquitectura y filosofía.</p>
+            <details>
+                <summary>Eventos Clave</summary>
+                <ul>
+                    <li>Construcción de las Pirámides de Giza (c. 2580-2565 a.C.).</li>
+                    <li>Guerras Médicas entre Grecia y Persia (499-449 a.C.).</li>
+                    <li>Conquista de Alejandro Magno (336-323 a.C.).</li>
+                    <li>Caída de Roma (476 d.C.).</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Figuras Importantes</summary>
+                <ul>
+                    <li> Cleopatra VII, última faraona de Egipto.</li>
+                    <li>Aristóteles, filósofo griego.</li>
+                    <li>Julio César, líder romano.</li>
+                </ul>
+            </details>
+            <div class="timeline">
+                <div class="timeline-item"><strong>3000 a.C.</strong> - Escritura cuneiforme en Mesopotamia.</div>
+                <div class="timeline-item"><strong>776 a.C.</strong> - Primeros Juegos Olímpicos en Grecia.</div>
+                <div class="timeline-item"><strong>27 a.C.</strong> - Inicio del Imperio Romano.</div>
+                <div class="timeline-item"><strong>476 d.C.</strong> - Fin del Imperio Romano de Occidente.</div>
+            </div>
             <img src="https://media.licdn.com/dms/image/v2/D5612AQF6ymN912imnA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1729735161415?e=2147483647&v=beta&t=5CUD0hEJz9oUqMKqwEVhsZHJoQf8aU8BEkkCQy71TVM" alt="Historia Antigua - Civilizaciones Egipcia, Griega y Romana">
         </section>
 
         <section id="medieval" class="section-card">
             <h2>Historia Medieval</h2>
-            <p>La Edad Media se extiende desde el siglo V hasta el XV. Incluye eventos como las Cruzadas, la Peste Negra y el feudalismo en Europa.</p>
+            <p>La Edad Media se extiende desde el siglo V hasta el XV. Incluye eventos como las Cruzadas, la Peste Negra y el feudalismo en Europa, junto con el auge del Islam y el Imperio Bizantino.</p>
+            <details>
+                <summary>Eventos Clave</summary>
+                <ul>
+                    <li>Caída de Constantinopla ante los bizantinos (siglo V).</li>
+                    <li>Las Cruzadas (1096-1291).</li>
+                    <li>Peste Negra (1347-1351).</li>
+                    <li>Caída de Constantinopla ante los otomanos (1453).</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Figuras Importantes</summary>
+                <ul>
+                    <li>Carlomagno, emperador del Sacro Imperio Romano.</li>
+                    <li>Juana de Arco, heroína francesa.</li>
+                    <li>Saladino, líder musulmán durante las Cruzadas.</li>
+                </ul>
+            </details>
+            <div class="timeline">
+                <div class="timeline-item"><strong>476 d.C.</strong> - Inicio de la Edad Media.</div>
+                <div class="timeline-item"><strong>800 d.C.</strong> - Coronación de Carlomagno.</div>
+                <div class="timeline-item"><strong>1066</strong> - Batalla de Hastings.</div>
+                <div class="timeline-item"><strong>1492</strong> - Descubrimiento de América (fin aproximado).</div>
+            </div>
             <img src="https://media.istockphoto.com/id/1481439549/photo/medieal-fight-with-swords-outside-a-castle.jpg?s=612x612&w=0&k=20&c=Nn7RcTrddNSxKq2ck5w-rjT_CbJ6bbch4hY1qYGVTr0=" alt="Historia Medieval - Castillos, Caballeros y Cruzadas en Europa">
         </section>
 
         <section id="moderna" class="section-card">
             <h2>Historia Moderna</h2>
-            <p>La historia moderna cubre desde el Renacimiento hasta la Revolución Industrial. Incluye descubrimientos, colonizaciones y avances científicos.</p>
+            <p>La historia moderna cubre desde el Renacimiento hasta la Revolución Industrial. Incluye descubrimientos, colonizaciones y avances científicos, marcando el paso del feudalismo al capitalismo.</p>
+            <details>
+                <summary>Eventos Clave</summary>
+                <ul>
+                    <li>Renacimiento italiano (siglo XIV-XVII).</li>
+                    <li>Descubrimiento de América por Colón (1492).</li>
+                    <li>Reforma Protestante (1517).</li>
+                    <li>Revolución Industrial (siglo XVIII-XIX).</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Figuras Importantes</summary>
+                <ul>
+                    <li>Leonardo da Vinci, genio renacentista.</li>
+                    <li>Cristóbal Colón, explorador.</li>
+                    <li>Martín Lutero, reformador religioso.</li>
+                    <li>James Watt, inventor de la máquina de vapor.</li>
+                </ul>
+            </details>
+            <div class="timeline">
+                <div class="timeline-item"><strong>1450</strong> - Invención de la imprenta por Gutenberg.</div>
+                <div class="timeline-item"><strong>1492</strong> - Viaje de Colón.</div>
+                <div class="timeline-item"><strong>1789</strong> - Revolución Francesa.</div>
+                <div class="timeline-item"><strong>1850</strong> - Auge de la Revolución Industrial.</div>
+            </div>
             <img src="https://i0.wp.com/streetsofsalem.com/wp-content/uploads/2014/10/nova-reperta.jpg?ssl=1" alt="Historia Moderna - Renacimiento, Descubrimientos y Revolución Industrial">
+        </section>
+
+        <section id="contemporanea" class="section-card">
+            <h2>Historia Contemporánea</h2>
+            <p>La historia contemporánea abarca desde finales del siglo XVIII hasta la actualidad, incluyendo revoluciones, guerras mundiales, la Guerra Fría y la globalización.</p>
+            <details>
+                <summary>Eventos Clave</summary>
+                <ul>
+                    <li>Revolución Francesa (1789-1799).</li>
+                    <li>Primera Guerra Mundial (1914-1918).</li>
+                    <li>Segunda Guerra Mundial (1939-1945).</li>
+                    <li>Caída del Muro de Berlín (1989).</li>
+                    <li>Ataques del 11 de septiembre (2001).</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Figuras Importantes</summary>
+                <ul>
+                    <li>Napoleón Bonaparte, emperador francés.</li>
+                    <li>Winston Churchill, primer ministro británico.</li>
+                    <li>Martin Luther King Jr., líder de derechos civiles.</li>
+                    <li>Nelson Mandela, presidente sudafricano.</li>
+                </ul>
+            </details>
+            <div class="timeline">
+                <div class="timeline-item"><strong>1914</strong> - Inicio de la Primera Guerra Mundial.</div>
+                <div class="timeline-item"><strong>1945</strong> - Fin de la Segunda Guerra Mundial.</div>
+                <div class="timeline-item"><strong>1969</strong> - Llegada a la Luna.</div>
+                <div class="timeline-item"><strong>2000</strong> - Inicio del siglo XXI con avances tecnológicos.</div>
+            </div>
+            <img src="https://www.thoughtco.com/thmb/Ts3UgAK5Kjn820NAqg1u3uI6zAo=/275x0/filters:no_upscale():max_bytes(150000):strip_icc()/1990s-timeline-1779956-FINAL-5b76f052c9e77c0050075bd3.png" alt="Historia Contemporánea - Guerras Mundiales, Guerra Fría y Eventos del Siglo XX">
         </section>
     </main>
 
@@ -179,9 +396,6 @@
                 });
             });
         });
-
-        // Alert de bienvenida opcional
-        // alert('¡Bienvenido a la página de historia! Explora las secciones para aprender más.');
     </script>
 </body>
 </html>
