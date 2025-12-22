@@ -28,5 +28,15 @@ function mostrar(seccion) {
   }
 
   else if (seccion === "moderna") {
-    contenido
-    
+    contenido.innerHTML = `
+      <h2>Historia Moderna</h2>
+      <img src="imagenes/moderna.jpg" width="300">
+      <p>La historia moderna incluye revoluciones, descubrimientos y el inicio del mundo contemporáneo.</p>
+      <ul>
+        <li>Renacimiento y descubrimientos</li>
+        <li>Revolución Francesa</li>
+        <li>Industrialización</li>
+      </ul>
+    `;
+  }
+}
