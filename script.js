@@ -1,3 +1,4 @@
+
 function mostrar(seccion) {
   let contenido = document.getElementById("contenido");
 
@@ -17,7 +18,7 @@ function mostrar(seccion) {
   else if (seccion === "medieval") {
     contenido.innerHTML = `
       <h2>Edad Media</h2>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Castillo_de_Pe%C3%B1afiel.jpg" width="300">
+      <img src="https://pixabay.com/get/g7f9c7b2f0a2c0b6d5b8b7c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6.jpg" width="300">
       <p>La Edad Media se caracteriza por castillos, cruzadas y el feudalismo.</p>
       <ul>
         <li>Castillos y caballeros</li>
@@ -30,7 +31,7 @@ function mostrar(seccion) {
   else if (seccion === "moderna") {
     contenido.innerHTML = `
       <h2>Historia Moderna</h2>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Prise_de_la_Bastille.jpg" width="300">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Delacroix_-_La_Libert%C3%A9_guidant_le_peuple.jpg" width="300">
       <p>La historia moderna incluye revoluciones, descubrimientos y el inicio del mundo contemporáneo.</p>
       <ul>
         <li>Renacimiento y descubrimientos</li>
@@ -40,4 +41,3 @@ function mostrar(seccion) {
     `;
   }
 }
-
