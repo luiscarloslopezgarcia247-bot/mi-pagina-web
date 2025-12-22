@@ -1,107 +1,32 @@
 body {
     font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa; /* Color suave gris claro */
+    background-color: #f8f9fa; /* Gris claro suave */
     color: #333;
     line-height: 1.6;
 }
 
-header {
+.bg-gradient-primary {
     background: linear-gradient(to right, #6c757d, #343a40); /* Gradiente suave gris a oscuro */
-    color: white;
-    padding: 40px 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
-h1 {
+h1.display-4 {
     font-weight: 700;
-    margin: 0;
-    font-size: 2.5em;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0 0;
-}
-
-nav ul li {
-    display: inline-block;
-    margin: 0 20px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
+.nav-link {
     font-weight: 400;
     transition: color 0.3s ease;
 }
 
-nav a:hover {
-    color: #ced4da; /* Color suave al hover */
+.nav-link:hover {
+    color: #ced4da !important; /* Hover suave */
 }
 
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-}
-
-.section-card {
-    background-color: white;
-    border-radius: 8px; /* Bordes redondeados para acabado profesional */
-    padding: 30px;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+.card {
+    border: none;
+    border-radius: 10px; /* Bordes redondeados */
     transition: transform 0.3s ease;
 }
 
-.section-card:hover {
-    transform: translateY(-5px); /* Efecto de elevación al hover */
-}
-
-h2 {
-    color: #495057; /* Gris oscuro suave */
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-p {
-    font-weight: 300;
-    font-size: 1.1em;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto 0;
-    border-radius: 8px; /* Bordes redondeados en imágenes */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-footer {
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    header {
-        padding: 30px 15px;
-    }
-
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    .section-card {
-        padding: 20px;
-    }
-}
+.card:hover {
+    transform: translateY(-10px); /* Elevación al hover para acabado profesional
