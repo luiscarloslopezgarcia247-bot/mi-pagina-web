@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia del Mundo - Versión Expandida</title>
+    <title>Historia del Mundo - Versión Interactiva</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -35,47 +35,54 @@
             letter-spacing: 1px;
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0 0;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin: 0 25px;
-        }
-
-        nav a {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-size: 1.2em;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #ffffff;
-            transform: scale(1.1);
-        }
-
-        #search-bar {
-            margin: 20px auto;
-            max-width: 600px;
+        #home {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
-        #search-input {
-            padding: 10px;
-            width: 80%;
-            font-size: 1em;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+        body.dark-mode #home {
+            background-color: #2c2c2c;
+        }
+
+        #home h2 {
+            color: #2c3e50;
+        }
+
+        body.dark-mode #home h2 {
+            color: #4c6784;
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .era-button {
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #4c6784;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .era-button:hover {
+            background-color: #2c3e50;
+            transform: scale(1.05);
         }
 
         main {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
+            display: none; /* Oculto inicialmente */
         }
 
         .section-card {
@@ -85,15 +92,35 @@
             margin-bottom: 50px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: none; /* Secciones ocultas inicialmente */
         }
 
         body.dark-mode .section-card {
             background-color: #2c2c2c;
         }
 
+        .section-card.active {
+            display: block;
+        }
+
         .section-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button {
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #495057;
         }
 
         h2, h3 {
@@ -253,15 +280,31 @@
             cursor: pointer;
         }
 
+        #search-bar {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+            display: none; /* Oculto en pantalla de inicio */
+        }
+
+        #search-input {
+            padding: 10px;
+            width: 80%;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
         /* Responsivo */
         @media (max-width: 768px) {
             header {
                 padding: 40px 15px;
             }
 
-            nav ul li {
+            .era-button {
                 display: block;
-                margin: 15px 0;
+                width: 80%;
+                margin: 15px auto;
             }
 
             .section-card {
@@ -299,17 +342,20 @@
     <button id="dark-mode-toggle">Modo Oscuro</button>
     <header>
         <h1>Bienvenido a la Página de Historia del Mundo</h1>
-        <nav>
-            <ul>
-                <li><a href="#prehistoria">Prehistoria</a></li>
-                <li><a href="#antigua">Historia Antigua</a></li>
-                <li><a href="#medieval">Historia Medieval</a></li>
-                <li><a href="#moderna">Historia Moderna</a></li>
-                <li><a href="#contemporanea">Historia Contemporánea</a></li>
-                <li><a href="#glosario">Glosario</a></li>
-            </ul>
-        </nav>
     </header>
+
+    <div id="home">
+        <h2>Explora la Historia</h2>
+        <p>Selecciona una era histórica para ver información detallada, líneas de tiempo, quizzes y más. Haz clic en los botones a continuación para comenzar.</p>
+        <div class="button-container">
+            <button class="era-button" data-section="prehistoria">Prehistoria</button>
+            <button class="era-button" data-section="antigua">Historia Antigua</button>
+            <button class="era-button" data-section="medieval">Historia Medieval</button>
+            <button class="era-button" data-section="moderna">Historia Moderna</button>
+            <button class="era-button" data-section="contemporanea">Historia Contemporánea</button>
+            <button class="era-button" data-section="glosario">Glosario</button>
+        </div>
+    </div>
 
     <div id="search-bar">
         <input type="text" id="search-input" placeholder="Busca en la página (ej. 'Roma')">
@@ -317,6 +363,7 @@
 
     <main>
         <section id="prehistoria" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
             <h2>Prehistoria</h2>
             <p>La prehistoria es el período que abarca desde la aparición de los primeros homínidos hasta la invención de la escritura alrededor del 3000 a.C. Se divide en Paleolítico, Mesolítico y Neolítico, marcado por la evolución humana, el uso de herramientas y el desarrollo de sociedades cazadoras-recolectoras. Durante este tiempo, los humanos migraron desde África a otros continentes, adaptándose a diversos entornos.</p>
             <h3>Cultura y Sociedad</h3>
@@ -361,6 +408,7 @@
         </section>
 
         <section id="antigua" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
             <h2>Historia Antigua</h2>
             <p>La historia antigua abarca desde la invención de la escritura hasta la caída del Imperio Romano de Occidente en el año 476 d.C. Incluye civilizaciones como Egipto, Grecia y Roma, con avances en escritura, arquitectura y filosofía. Otras regiones como Mesopotamia y el Valle del Indo también florecieron.</p>
             <h3>Cultura y Sociedad</h3>
@@ -410,6 +458,7 @@
         </section>
 
         <section id="medieval" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
             <h2>Historia Medieval</h2>
             <p>La Edad Media se extiende desde el siglo V hasta el XV. Incluye eventos como las Cruzadas, la Peste Negra y el feudalismo en Europa, junto con el auge del Islam y el Imperio Bizantino. En Asia, dinastías como los Tang y Song en China innovaron en tecnología.</p>
             <h3>Cultura y Sociedad</h3>
@@ -459,6 +508,7 @@
         </section>
 
         <section id="moderna" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
             <h2>Historia Moderna</h2>
             <p>La historia moderna cubre desde el Renacimiento hasta la Revolución Industrial. Incluye descubrimientos, colonizaciones y avances científicos, marcando el paso del feudalismo al capitalismo. La Ilustración promovió la razón y los derechos humanos.</p>
             <h3>Cultura y Sociedad</h3>
@@ -508,6 +558,7 @@
         </section>
 
         <section id="contemporanea" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
             <h2>Historia Contemporánea</h2>
             <p>La historia contemporánea abarca desde finales del siglo XVIII hasta la actualidad, incluyendo revoluciones, guerras mundiales, la Guerra Fría y la globalización. La era digital y los desafíos ambientales definen el siglo XXI.</p>
             <h3>Cultura y Sociedad</h3>
@@ -560,6 +611,7 @@
         </section>
 
         <section id="glosario" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
             <h2>Glosario de Términos Históricos</h2>
             <details>
                 <summary>Prehistoria</summary>
@@ -604,29 +656,58 @@
     </footer>
 
     <script>
-        // Scroll suave
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
         // Modo oscuro
         document.getElementById('dark-mode-toggle').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
             this.textContent = document.body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Oscuro';
         });
 
-        // Búsqueda
+        // Mostrar pantalla de inicio inicialmente
+        const home = document.getElementById('home');
+        const main = document.querySelector('main');
+        const searchBar = document.getElementById('search-bar');
+        const sections = document.querySelectorAll('.section-card');
+
+        // Botones de era en home
+        document.querySelectorAll('.era-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const sectionId = this.dataset.section;
+                showSection(sectionId);
+            });
+        });
+
+        // Botones de volver
+        document.querySelectorAll('.back-button').forEach(button => {
+            button.addEventListener('click', showHome);
+        });
+
+        function showHome() {
+            home.style.display = 'block';
+            main.style.display = 'none';
+            searchBar.style.display = 'none';
+            sections.forEach(sec => sec.classList.remove('active'));
+        }
+
+        function showSection(sectionId) {
+            home.style.display = 'none';
+            main.style.display = 'block';
+            searchBar.style.display = 'block';
+            sections.forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Búsqueda (solo funciona cuando una sección está visible)
         document.getElementById('search-input').addEventListener('input', function() {
             const term = this.value.toLowerCase();
-            document.querySelectorAll('.section-card').forEach(section => {
-                const text = section.textContent.toLowerCase();
-                section.style.display = text.includes(term) ? 'block' : 'none';
-            });
+            const activeSection = document.querySelector('.section-card.active');
+            if (activeSection) {
+                const elements = activeSection.querySelectorAll('p, li, h3, summary');
+                elements.forEach(el => {
+                    const text = el.textContent.toLowerCase();
+                    el.style.display = text.includes(term) ? 'block' : 'none';
+                });
+            }
         });
 
         // Función de quiz
