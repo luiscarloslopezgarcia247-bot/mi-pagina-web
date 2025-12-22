@@ -1,2 +1,2 @@
-# mi-pagina-web
+# mi pagina web
 pagina sobre historia
