@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia del Mundo</title>
+    <title>Historia del Mundo - Versión Expandida</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8; /* Color suave azul-gris */
+            background-color: #f0f4f8;
             color: #333;
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
         }
 
         header {
-            background: linear-gradient(to bottom, #2c3e50, #4c6784); /* Gradiente suave oscuro */
+            background: linear-gradient(to bottom, #2c3e50, #4c6784);
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -52,8 +58,22 @@
             transform: scale(1.1);
         }
 
+        #search-bar {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        #search-input {
+            padding: 10px;
+            width: 80%;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
         main {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
         }
@@ -67,17 +87,23 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
+        body.dark-mode .section-card {
+            background-color: #2c2c2c;
+        }
+
         .section-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
-        h2 {
+        h2, h3 {
             color: #2c3e50;
-            font-size: 2em;
-            margin-bottom: 20px;
             border-bottom: 2px solid #4c6784;
             padding-bottom: 10px;
+        }
+
+        body.dark-mode h2, body.dark-mode h3 {
+            color: #4c6784;
         }
 
         p {
@@ -149,28 +175,47 @@
             z-index: 1;
         }
 
+        body.dark-mode .timeline-item::before {
+            border-color: #1e1e1e;
+        }
+
         .timeline-item:nth-child(even)::before {
             left: -10px;
             right: auto;
         }
 
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 30px;
-            }
+        .quiz {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
 
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-                text-align: left;
-                left: 0 !important;
-            }
+        body.dark-mode .quiz {
+            background-color: #3c3c3c;
+        }
 
-            .timeline-item::before {
-                left: 20px !important;
-                right: auto !important;
-            }
+        .quiz-question {
+            margin-bottom: 15px;
+        }
+
+        .quiz-button {
+            padding: 10px 20px;
+            background-color: #4c6784;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-button:hover {
+            background-color: #2c3e50;
+        }
+
+        .quiz-result {
+            margin-top: 10px;
+            font-weight: bold;
         }
 
         img {
@@ -196,6 +241,18 @@
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
         }
 
+        #dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #4c6784;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         /* Responsivo */
         @media (max-width: 768px) {
             header {
@@ -218,12 +275,30 @@
             h2 {
                 font-size: 1.8em;
             }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                text-align: left;
+                left: 0 !important;
+            }
+
+            .timeline-item::before {
+                left: 20px !important;
+                right: auto !important;
+            }
         }
     </style>
 </head>
 <body>
+    <button id="dark-mode-toggle">Modo Oscuro</button>
     <header>
-        <h1>Bienvenido a la Página de Historia</h1>
+        <h1>Bienvenido a la Página de Historia del Mundo</h1>
         <nav>
             <ul>
                 <li><a href="#prehistoria">Prehistoria</a></li>
@@ -231,20 +306,32 @@
                 <li><a href="#medieval">Historia Medieval</a></li>
                 <li><a href="#moderna">Historia Moderna</a></li>
                 <li><a href="#contemporanea">Historia Contemporánea</a></li>
+                <li><a href="#glosario">Glosario</a></li>
             </ul>
         </nav>
     </header>
 
+    <div id="search-bar">
+        <input type="text" id="search-input" placeholder="Busca en la página (ej. 'Roma')">
+    </div>
+
     <main>
         <section id="prehistoria" class="section-card">
             <h2>Prehistoria</h2>
-            <p>La prehistoria es el período que abarca desde la aparición de los primeros homínidos hasta la invención de la escritura alrededor del 3000 a.C. Se divide en Paleolítico, Mesolítico y Neolítico, marcado por la evolución humana, el uso de herramientas y el desarrollo de sociedades cazadoras-recolectoras.</p>
+            <p>La prehistoria es el período que abarca desde la aparición de los primeros homínidos hasta la invención de la escritura alrededor del 3000 a.C. Se divide en Paleolítico, Mesolítico y Neolítico, marcado por la evolución humana, el uso de herramientas y el desarrollo de sociedades cazadoras-recolectoras. Durante este tiempo, los humanos migraron desde África a otros continentes, adaptándose a diversos entornos.</p>
+            <h3>Cultura y Sociedad</h3>
+            <p>Las sociedades prehistóricas desarrollaron arte rupestre, rituales funerarios y herramientas avanzadas. El arte en cuevas como Lascaux refleja creencias espirituales y observaciones del entorno.</p>
+            <h3>Tecnología</h3>
+            <p>Desde herramientas de piedra hasta la domesticación de animales y plantas, la tecnología prehistórica sentó las bases para la civilización.</p>
             <details>
                 <summary>Eventos Clave</summary>
                 <ul>
                     <li>Aparición de Homo sapiens (hace unos 300,000 años).</li>
                     <li>Revolución Neolítica: Agricultura y domesticación de animales (hace 10,000 años).</li>
                     <li>Arte rupestre en cuevas como Lascaux y Altamira.</li>
+                    <li>Domesticación de goats y dogs (10000 BCE).</li>
+                    <li>Settled farming began (9500 BCE).</li>
+                    <li>Copper was discovered (6000 BCE).</li>
                 </ul>
             </details>
             <details>
@@ -256,15 +343,32 @@
             </details>
             <div class="timeline">
                 <div class="timeline-item"><strong>2.5M a.C.</strong> - Primeras herramientas de piedra.</div>
+                <div class="timeline-item"><strong>1.7M a.C.</strong> - Primeras herramientas fuera de África en Malaysia.</div>
                 <div class="timeline-item"><strong>200,000 a.C.</strong> - Aparición de Homo sapiens en África.</div>
                 <div class="timeline-item"><strong>10,000 a.C.</strong> - Fin de la última Edad de Hielo.</div>
+                <div class="timeline-item"><strong>9500 a.C.</strong> - Inicio de la agricultura sedentaria.</div>
+                <div class="timeline-item"><strong>6000 a.C.</strong> - Descubrimiento del cobre.</div>
             </div>
-            <img src="https://res.cloudinary.com/aenetworks/image/upload/c_fill,w_1200,h_630,g_auto/dpr_auto/f_auto/q_auto:eco/v1/human-evolution-gettyimages-122223741" alt="Prehistoria - Evolución Humana y Herramientas de Piedra">
+            <img src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:240,cw:1440,ch:1080,q:80,w:1440/E5tiaKJ9VwaPpUTQRgyHh6.jpg" alt="Prehistoria - Evolución Humana y Pinturas Rupestres">
+            <img src="https://images.ctfassets.net/mrbo2ykgx5lt/24280/5cd6334f0a420ff764ec28686d3e4517/frontiers-in-psychology-cave-art-origin-modern-language.jpg?&w=1200&h=630&fm=jpg&f=center" alt="Arte en Cuevas Prehistóricas">
+            <div class="quiz">
+                <h3>Quiz: Prehistoria</h3>
+                <div class="quiz-question">¿Cuándo apareció el Homo sapiens?</div>
+                <button class="quiz-button" onclick="checkAnswer('prehistoria', 'Hace 300,000 años', this)">Hace 300,000 años</button>
+                <button class="quiz-button" onclick="checkAnswer('prehistoria', 'Hace 300,000 años', this)">Hace 1 millón de años</button>
+                <div id="prehistoria-result" class="quiz-result"></div>
+            </div>
         </section>
 
         <section id="antigua" class="section-card">
             <h2>Historia Antigua</h2>
-            <p>La historia antigua abarca desde la invención de la escritura hasta la caída del Imperio Romano de Occidente en el año 476 d.C. Incluye civilizaciones como Egipto, Grecia y Roma, con avances en escritura, arquitectura y filosofía.</p>
+            <p>La historia antigua abarca desde la invención de la escritura hasta la caída del Imperio Romano de Occidente en el año 476 d.C. Incluye civilizaciones como Egipto, Grecia y Roma, con avances en escritura, arquitectura y filosofía. Otras regiones como Mesopotamia y el Valle del Indo también florecieron.</p>
+            <h3>Cultura y Sociedad</h3>
+            <p>Las civilizaciones antiguas desarrollaron sistemas de gobierno, religiones politeístas y arte monumental. En Grecia, la democracia y la filosofía marcaron un hito.</p>
+            <h3>Tecnología y Economía</h3>
+            <p>Invenciones como la rueda, la escritura cuneiforme y la irrigación transformaron la sociedad. El comercio conectó continentes.</p>
+            <h3>Guerras y Conflictos</h3>
+            <p>Las Guerras Médicas, las conquistas de Alejandro y las Guerras Púnicas definieron el mapa político.</p>
             <details>
                 <summary>Eventos Clave</summary>
                 <ul>
@@ -272,28 +376,48 @@
                     <li>Guerras Médicas entre Grecia y Persia (499-449 a.C.).</li>
                     <li>Conquista de Alejandro Magno (336-323 a.C.).</li>
                     <li>Caída de Roma (476 d.C.).</li>
+                    <li>Escritura cuneiforme en Mesopotamia (3000 a.C.).</li>
+                    <li>Primeros Juegos Olímpicos (776 a.C.).</li>
                 </ul>
             </details>
             <details>
                 <summary>Figuras Importantes</summary>
                 <ul>
-                    <li> Cleopatra VII, última faraona de Egipto.</li>
+                    <li>Cleopatra VII, última faraona de Egipto.</li>
                     <li>Aristóteles, filósofo griego.</li>
                     <li>Julio César, líder romano.</li>
+                    <li>Alejandro el Grande (356–323 B.C.).</li>
+                    <li>Abraham (2000 B.C.?).</li>
                 </ul>
             </details>
             <div class="timeline">
                 <div class="timeline-item"><strong>3000 a.C.</strong> - Escritura cuneiforme en Mesopotamia.</div>
+                <div class="timeline-item"><strong>2580 a.C.</strong> - Pirámides de Giza.</div>
                 <div class="timeline-item"><strong>776 a.C.</strong> - Primeros Juegos Olímpicos en Grecia.</div>
+                <div class="timeline-item"><strong>336 a.C.</strong> - Conquistas de Alejandro Magno.</div>
                 <div class="timeline-item"><strong>27 a.C.</strong> - Inicio del Imperio Romano.</div>
                 <div class="timeline-item"><strong>476 d.C.</strong> - Fin del Imperio Romano de Occidente.</div>
             </div>
-            <img src="https://media.licdn.com/dms/image/v2/D5612AQF6ymN912imnA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1729735161415?e=2147483647&v=beta&t=5CUD0hEJz9oUqMKqwEVhsZHJoQf8aU8BEkkCQy71TVM" alt="Historia Antigua - Civilizaciones Egipcia, Griega y Romana">
+            <img src="https://m.media-amazon.com/images/I/910KSGHOvqL._UF1000,1000_QL80_.jpg" alt="Civilizaciones Antiguas - Egipto, Grecia y Roma">
+            <img src="https://brewminate.com/wp-content/uploads/2017/12/120617-17-Egypt-Greece.png" alt="Mapa de Civilizaciones Antiguas">
+            <div class="quiz">
+                <h3>Quiz: Historia Antigua</h3>
+                <div class="quiz-question">¿Quién conquistó un vasto imperio en el siglo IV a.C.?</div>
+                <button class="quiz-button" onclick="checkAnswer('antigua', 'Alejandro Magno', this)">Alejandro Magno</button>
+                <button class="quiz-button" onclick="checkAnswer('antigua', 'Alejandro Magno', this)">Julio César</button>
+                <div id="antigua-result" class="quiz-result"></div>
+            </div>
         </section>
 
         <section id="medieval" class="section-card">
             <h2>Historia Medieval</h2>
-            <p>La Edad Media se extiende desde el siglo V hasta el XV. Incluye eventos como las Cruzadas, la Peste Negra y el feudalismo en Europa, junto con el auge del Islam y el Imperio Bizantino.</p>
+            <p>La Edad Media se extiende desde el siglo V hasta el XV. Incluye eventos como las Cruzadas, la Peste Negra y el feudalismo en Europa, junto con el auge del Islam y el Imperio Bizantino. En Asia, dinastías como los Tang y Song en China innovaron en tecnología.</p>
+            <h3>Cultura y Sociedad</h3>
+            <p>El feudalismo estructuró la sociedad europea, con castillos y caballeros. El Renacimiento islámico preservó conocimiento antiguo.</p>
+            <h3>Tecnología y Economía</h3>
+            <p>Invenciones como la pólvora, la brújula y la imprenta (finales) cambiaron el mundo. El comercio de la Ruta de la Seda floreció.</p>
+            <h3>Guerras y Conflictos</h3>
+            <p>Las Cruzadas (1096-1291) y la Guerra de los Cien Años (1337-1453) marcaron conflictos religiosos y territoriales.</p>
             <details>
                 <summary>Eventos Clave</summary>
                 <ul>
@@ -301,6 +425,8 @@
                     <li>Las Cruzadas (1096-1291).</li>
                     <li>Peste Negra (1347-1351).</li>
                     <li>Caída de Constantinopla ante los otomanos (1453).</li>
+                    <li>Batalla de Hastings (1066).</li>
+                    <li>Coronación de Carlomagno (800 d.C.).</li>
                 </ul>
             </details>
             <details>
@@ -309,20 +435,38 @@
                     <li>Carlomagno, emperador del Sacro Imperio Romano.</li>
                     <li>Juana de Arco, heroína francesa.</li>
                     <li>Saladino, líder musulmán durante las Cruzadas.</li>
+                    <li>Genghis Khan, fundador del Imperio Mongol.</li>
                 </ul>
             </details>
             <div class="timeline">
                 <div class="timeline-item"><strong>476 d.C.</strong> - Inicio de la Edad Media.</div>
                 <div class="timeline-item"><strong>800 d.C.</strong> - Coronación de Carlomagno.</div>
                 <div class="timeline-item"><strong>1066</strong> - Batalla de Hastings.</div>
+                <div class="timeline-item"><strong>1096</strong> - Inicio de las Cruzadas.</div>
+                <div class="timeline-item"><strong>1347</strong> - Peste Negra.</div>
+                <div class="timeline-item"><strong>1453</strong> - Caída de Constantinopla.</div>
                 <div class="timeline-item"><strong>1492</strong> - Descubrimiento de América (fin aproximado).</div>
             </div>
-            <img src="https://media.istockphoto.com/id/1481439549/photo/medieal-fight-with-swords-outside-a-castle.jpg?s=612x612&w=0&k=20&c=Nn7RcTrddNSxKq2ck5w-rjT_CbJ6bbch4hY1qYGVTr0=" alt="Historia Medieval - Castillos, Caballeros y Cruzadas en Europa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/KRAK_DES_CHEVALIERS_-_GAR_-_6-00.jpg" alt="Castillo de los Caballeros - Krak des Chevaliers">
+            <img src="https://www.world-archaeology.com/wp-content/uploads/2013/01/1320.jpg" alt="Castillos de las Cruzadas">
+            <div class="quiz">
+                <h3>Quiz: Historia Medieval</h3>
+                <div class="quiz-question">¿Qué evento mató a un tercio de la población europea en el siglo XIV?</div>
+                <button class="quiz-button" onclick="checkAnswer('medieval', 'Peste Negra', this)">Peste Negra</button>
+                <button class="quiz-button" onclick="checkAnswer('medieval', 'Peste Negra', this)">Cruzadas</button>
+                <div id="medieval-result" class="quiz-result"></div>
+            </div>
         </section>
 
         <section id="moderna" class="section-card">
             <h2>Historia Moderna</h2>
-            <p>La historia moderna cubre desde el Renacimiento hasta la Revolución Industrial. Incluye descubrimientos, colonizaciones y avances científicos, marcando el paso del feudalismo al capitalismo.</p>
+            <p>La historia moderna cubre desde el Renacimiento hasta la Revolución Industrial. Incluye descubrimientos, colonizaciones y avances científicos, marcando el paso del feudalismo al capitalismo. La Ilustración promovió la razón y los derechos humanos.</p>
+            <h3>Cultura y Sociedad</h3>
+            <p>El Renacimiento revivió el arte clásico, con maestros como da Vinci. La Reforma dividió el cristianismo.</p>
+            <h3>Tecnología y Economía</h3>
+            <p>La imprenta de Gutenberg (1450) difundió conocimiento. La Revolución Industrial introdujo máquinas y fábricas.</p>
+            <h3>Guerras y Conflictos</h3>
+            <p>La Revolución Francesa (1789) y las guerras napoleónicas remodelaron Europa.</p>
             <details>
                 <summary>Eventos Clave</summary>
                 <ul>
@@ -330,6 +474,8 @@
                     <li>Descubrimiento de América por Colón (1492).</li>
                     <li>Reforma Protestante (1517).</li>
                     <li>Revolución Industrial (siglo XVIII-XIX).</li>
+                    <li>Invención de la imprenta por Gutenberg (1450).</li>
+                    <li>Revolución Francesa (1789).</li>
                 </ul>
             </details>
             <details>
@@ -339,20 +485,37 @@
                     <li>Cristóbal Colón, explorador.</li>
                     <li>Martín Lutero, reformador religioso.</li>
                     <li>James Watt, inventor de la máquina de vapor.</li>
+                    <li>Napoleón Bonaparte (1769–1821).</li>
                 </ul>
             </details>
             <div class="timeline">
                 <div class="timeline-item"><strong>1450</strong> - Invención de la imprenta por Gutenberg.</div>
                 <div class="timeline-item"><strong>1492</strong> - Viaje de Colón.</div>
+                <div class="timeline-item"><strong>1517</strong> - Reforma Protestante.</div>
+                <div class="timeline-item"><strong>1760</strong> - Inicio de la Revolución Industrial.</div>
                 <div class="timeline-item"><strong>1789</strong> - Revolución Francesa.</div>
                 <div class="timeline-item"><strong>1850</strong> - Auge de la Revolución Industrial.</div>
             </div>
-            <img src="https://i0.wp.com/streetsofsalem.com/wp-content/uploads/2014/10/nova-reperta.jpg?ssl=1" alt="Historia Moderna - Renacimiento, Descubrimientos y Revolución Industrial">
+            <img src="https://www.dailyartmagazine.com/wp-content/uploads/2020/11/An_Experiment_on_a_Bird_in_an_Air_Pump_by_Joseph_Wright_of_Derby_1768-1024x755.jpg" alt="Revolución Industrial - Experimento Científico">
+            <img src="https://res.cloudinary.com/aenetworks/image/upload/c_fill,w_1200,h_630,g_auto/dpr_auto/f_auto/q_auto:eco/v1/renaissance-art-gettyimages-550119221" alt="Arte del Renacimiento">
+            <div class="quiz">
+                <h3>Quiz: Historia Moderna</h3>
+                <div class="quiz-question">¿Quién inventó la imprenta en 1450?</div>
+                <button class="quiz-button" onclick="checkAnswer('moderna', 'Johannes Gutenberg', this)">Johannes Gutenberg</button>
+                <button class="quiz-button" onclick="checkAnswer('moderna', 'Johannes Gutenberg', this)">Leonardo da Vinci</button>
+                <div id="moderna-result" class="quiz-result"></div>
+            </div>
         </section>
 
         <section id="contemporanea" class="section-card">
             <h2>Historia Contemporánea</h2>
-            <p>La historia contemporánea abarca desde finales del siglo XVIII hasta la actualidad, incluyendo revoluciones, guerras mundiales, la Guerra Fría y la globalización.</p>
+            <p>La historia contemporánea abarca desde finales del siglo XVIII hasta la actualidad, incluyendo revoluciones, guerras mundiales, la Guerra Fría y la globalización. La era digital y los desafíos ambientales definen el siglo XXI.</p>
+            <h3>Cultura y Sociedad</h3>
+            <p>Movimientos como los derechos civiles, el feminismo y la descolonización transformaron sociedades. La cultura pop globalizó a través de medios.</p>
+            <h3>Tecnología y Economía</h3>
+            <p>La Revolución Digital trajo internet y IA. La globalización integró economías mundiales.</p>
+            <h3>Guerras y Conflictos</h3>
+            <p>Las dos Guerras Mundiales, la Guerra Fría y conflictos como Vietnam y el Medio Oriente marcaron el siglo XX.</p>
             <details>
                 <summary>Eventos Clave</summary>
                 <ul>
@@ -361,6 +524,8 @@
                     <li>Segunda Guerra Mundial (1939-1945).</li>
                     <li>Caída del Muro de Berlín (1989).</li>
                     <li>Ataques del 11 de septiembre (2001).</li>
+                    <li>Llegada a la Luna (1969).</li>
+                    <li>Fin de la Guerra Fría (1991).</li>
                 </ul>
             </details>
             <details>
@@ -370,24 +535,76 @@
                     <li>Winston Churchill, primer ministro británico.</li>
                     <li>Martin Luther King Jr., líder de derechos civiles.</li>
                     <li>Nelson Mandela, presidente sudafricano.</li>
+                    <li>Albert Einstein, físico.</li>
                 </ul>
             </details>
             <div class="timeline">
+                <div class="timeline-item"><strong>1789</strong> - Revolución Francesa.</div>
                 <div class="timeline-item"><strong>1914</strong> - Inicio de la Primera Guerra Mundial.</div>
+                <div class="timeline-item"><strong>1939</strong> - Inicio de la Segunda Guerra Mundial.</div>
                 <div class="timeline-item"><strong>1945</strong> - Fin de la Segunda Guerra Mundial.</div>
                 <div class="timeline-item"><strong>1969</strong> - Llegada a la Luna.</div>
-                <div class="timeline-item"><strong>2000</strong> - Inicio del siglo XXI con avances tecnológicos.</div>
+                <div class="timeline-item"><strong>1989</strong> - Caída del Muro de Berlín.</div>
+                <div class="timeline-item"><strong>2001</strong> - Ataques del 11-S.</div>
+                <div class="timeline-item"><strong>2020</strong> - Pandemia de COVID-19.</div>
             </div>
-            <img src="https://www.thoughtco.com/thmb/Ts3UgAK5Kjn820NAqg1u3uI6zAo=/275x0/filters:no_upscale():max_bytes(150000):strip_icc()/1990s-timeline-1779956-FINAL-5b76f052c9e77c0050075bd3.png" alt="Historia Contemporánea - Guerras Mundiales, Guerra Fría y Eventos del Siglo XX">
+            <img src="https://cdn.britannica.com/39/61239-050-2ECF086D/troops-Czechs-Soviet-Prague-forces-Czechoslovakia-reform-August-21-1968.jpg" alt="Guerra Fría - Invasión Soviética en Praga">
+            <img src="https://cdn.britannica.com/12/218812-138-ABCDE048/cold-war.jpg?w=800&h=450&c=crop" alt="Mapa de la Guerra Fría">
+            <div class="quiz">
+                <h3>Quiz: Historia Contemporánea</h3>
+                <div class="quiz-question">¿Cuándo cayó el Muro de Berlín?</div>
+                <button class="quiz-button" onclick="checkAnswer('contemporanea', '1989', this)">1989</button>
+                <button class="quiz-button" onclick="checkAnswer('contemporanea', '1989', this)">1991</button>
+                <div id="contemporanea-result" class="quiz-result"></div>
+            </div>
+        </section>
+
+        <section id="glosario" class="section-card">
+            <h2>Glosario de Términos Históricos</h2>
+            <details>
+                <summary>Prehistoria</summary>
+                <ul>
+                    <li>Paleolítico: Período de herramientas de piedra tallada.</li>
+                    <li>Neolítico: Revolución agrícola.</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Historia Antigua</summary>
+                <ul>
+                    <li>Polis: Ciudad-estado griega.</li>
+                    <li>Imperio: Territorio extenso bajo un solo gobernante.</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Historia Medieval</summary>
+                <ul>
+                    <li>Feudalismo: Sistema social basado en vasallaje.</li>
+                    <li>Cruzadas: Guerras religiosas por Tierra Santa.</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Historia Moderna</summary>
+                <ul>
+                    <li>Renacimiento: Renacer cultural en Europa.</li>
+                    <li>Ilustración: Movimiento intelectual enfatizando la razón.</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Historia Contemporánea</summary>
+                <ul>
+                    <li>Guerra Fría: Conflicto ideológico entre EE.UU. y URSS.</li>
+                    <li>Globalización: Integración económica y cultural mundial.</li>
+                </ul>
+            </details>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Página de Historia. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Página de Historia. Todos los derechos reservados. Información basada en fuentes históricas generales.</p>
     </footer>
 
     <script>
-        // Scroll suave para enlaces de navegación
+        // Scroll suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -396,6 +613,35 @@
                 });
             });
         });
+
+        // Modo oscuro
+        document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            this.textContent = document.body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Oscuro';
+        });
+
+        // Búsqueda
+        document.getElementById('search-input').addEventListener('input', function() {
+            const term = this.value.toLowerCase();
+            document.querySelectorAll('.section-card').forEach(section => {
+                const text = section.textContent.toLowerCase();
+                section.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+
+        // Función de quiz
+        function checkAnswer(sectionId, correctAnswer, button) {
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+            const result = document.getElementById(sectionId + '-result');
+            if (button.textContent === correctAnswer) {
+                result.textContent = '¡Correcto!';
+                result.style.color = 'green';
+            } else {
+                result.textContent = 'Incorrecto. La respuesta es: ' + correctAnswer;
+                result.style.color = 'red';
+            }
+        }
     </script>
 </body>
 </html>
