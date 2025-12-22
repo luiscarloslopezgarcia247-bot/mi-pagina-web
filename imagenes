@@ -1,0 +1,8 @@
+mi-pagina-web/
+├── index.html
+├── style.css
+├── script.js
+└── images/
+    ├── antigua.jpg
+    ├── medieval.jpg
+    └── moderna.jpg
