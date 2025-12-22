@@ -245,6 +245,16 @@
             font-weight: bold;
         }
 
+        .quiz-container {
+            margin-bottom: 30px;
+        }
+
+        .quiz-score {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
         img {
             max-width: 100%;
             height: auto;
@@ -346,7 +356,7 @@
 
     <div id="home">
         <h2>Explora la Historia</h2>
-        <p>Selecciona una era histórica para ver información detallada, líneas de tiempo, quizzes y más. Haz clic en los botones a continuación para comenzar.</p>
+        <p>Selecciona una era histórica para ver información detallada, líneas de tiempo, quizzes y más. O prueba los quizzes especializados en historia general, cultura y personalidades históricas.</p>
         <div class="button-container">
             <button class="era-button" data-section="prehistoria">Prehistoria</button>
             <button class="era-button" data-section="antigua">Historia Antigua</button>
@@ -354,6 +364,9 @@
             <button class="era-button" data-section="moderna">Historia Moderna</button>
             <button class="era-button" data-section="contemporanea">Historia Contemporánea</button>
             <button class="era-button" data-section="glosario">Glosario</button>
+            <button class="era-button" data-section="quiz-general">Quiz Historia General</button>
+            <button class="era-button" data-section="quiz-cultura">Quiz Cultura Histórica</button>
+            <button class="era-button" data-section="quiz-personalidades">Quiz Personalidades Históricas</button>
         </div>
     </div>
 
@@ -649,6 +662,213 @@
                 </ul>
             </details>
         </section>
+
+        <section id="quiz-general" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
+            <h2>Quiz Historia General</h2>
+            <p>Prueba tus conocimientos generales sobre historia con este quiz de 10 preguntas. Selecciona la respuesta correcta y ve tu puntuación al final.</p>
+            <div class="quiz-container" id="quiz-general-container">
+                <div class="quiz-question">1. ¿Cuándo cayó el Imperio Romano de Occidente?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 1, '476 d.C.', this)">476 d.C.</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 1, '476 d.C.', this)">1453 d.C.</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 1, '476 d.C.', this)">1066 d.C.</button>
+                <div class="quiz-result" id="general-q1-result"></div>
+
+                <div class="quiz-question">2. ¿Quién fue el primer emperador romano?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 2, 'Augusto', this)">Augusto</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 2, 'Augusto', this)">Julio César</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 2, 'Augusto', this)">Nerón</button>
+                <div class="quiz-result" id="general-q2-result"></div>
+
+                <div class="quiz-question">3. ¿En qué año comenzó la Revolución Francesa?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 3, '1789', this)">1789</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 3, '1789', this)">1776</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 3, '1789', this)">1815</button>
+                <div class="quiz-result" id="general-q3-result"></div>
+
+                <div class="quiz-question">4. ¿Qué evento marcó el inicio de la Edad Media?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 4, 'Caída del Imperio Romano', this)">Caída del Imperio Romano</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 4, 'Caída del Imperio Romano', this)">Descubrimiento de América</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 4, 'Caída del Imperio Romano', this)">Renacimiento</button>
+                <div class="quiz-result" id="general-q4-result"></div>
+
+                <div class="quiz-question">5. ¿Cuándo se inventó la imprenta?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 5, '1450', this)">1450</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 5, '1450', this)">1600</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 5, '1450', this)">1200</button>
+                <div class="quiz-result" id="general-q5-result"></div>
+
+                <div class="quiz-question">6. ¿Qué pandemia mató a millones en el siglo XIV?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 6, 'Peste Negra', this)">Peste Negra</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 6, 'Peste Negra', this)">Gripe Española</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 6, 'Peste Negra', this)">COVID-19</button>
+                <div class="quiz-result" id="general-q6-result"></div>
+
+                <div class="quiz-question">7. ¿En qué año terminó la Segunda Guerra Mundial?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 7, '1945', this)">1945</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 7, '1945', this)">1918</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 7, '1945', this)">1939</button>
+                <div class="quiz-result" id="general-q7-result"></div>
+
+                <div class="quiz-question">8. ¿Quién descubrió América en 1492?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 8, 'Cristóbal Colón', this)">Cristóbal Colón</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 8, 'Cristóbal Colón', this)">Vasco da Gama</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 8, 'Cristóbal Colón', this)">Fernando Magallanes</button>
+                <div class="quiz-result" id="general-q8-result"></div>
+
+                <div class="quiz-question">9. ¿Cuándo comenzó la Primera Guerra Mundial?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 9, '1914', this)">1914</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 9, '1914', this)">1939</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 9, '1914', this)">1815</button>
+                <div class="quiz-result" id="general-q9-result"></div>
+
+                <div class="quiz-question">10. ¿Qué muro cayó en 1989 simbolizando el fin de la Guerra Fría?</div>
+                <button class="quiz-button" onclick="answerQuiz('general', 10, 'Muro de Berlín', this)">Muro de Berlín</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 10, 'Muro de Berlín', this)">Gran Muralla China</button>
+                <button class="quiz-button" onclick="answerQuiz('general', 10, 'Muro de Berlín', this)">Muro de Adriano</button>
+                <div class="quiz-result" id="general-q10-result"></div>
+            </div>
+            <button onclick="calculateScore('general')">Calcular Puntuación</button>
+            <div class="quiz-score" id="general-score"></div>
+        </section>
+
+        <section id="quiz-cultura" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
+            <h2>Quiz Cultura Histórica</h2>
+            <p>Prueba tus conocimientos sobre aspectos culturales de la historia, como arte, literatura y tradiciones.</p>
+            <div class="quiz-container" id="quiz-cultura-container">
+                <div class="quiz-question">1. ¿Quién pintó la Mona Lisa?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 1, 'Leonardo da Vinci', this)">Leonardo da Vinci</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 1, 'Leonardo da Vinci', this)">Miguel Ángel</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 1, 'Leonardo da Vinci', this)">Pablo Picasso</button>
+                <div class="quiz-result" id="cultura-q1-result"></div>
+
+                <div class="quiz-question">2. ¿Qué período cultural se asocia con el renacer del arte clásico en Europa?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 2, 'Renacimiento', this)">Renacimiento</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 2, 'Renacimiento', this)">Barroco</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 2, 'Renacimiento', this)">Romanticismo</button>
+                <div class="quiz-result" id="cultura-q2-result"></div>
+
+                <div class="quiz-question">3. ¿Qué antigua civilización construyó las pirámides de Giza?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 3, 'Egipcia', this)">Egipcia</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 3, 'Egipcia', this)">Maya</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 3, 'Egipcia', this)">Inca</button>
+                <div class="quiz-result" id="cultura-q3-result"></div>
+
+                <div class="quiz-question">4. ¿Quién escribió "La Ilíada" y "La Odisea"?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 4, 'Homero', this)">Homero</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 4, 'Homero', this)">Virgilio</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 4, 'Homero', this)">Sófocles</button>
+                <div class="quiz-result" id="cultura-q4-result"></div>
+
+                <div class="quiz-question">5. ¿Qué movimiento artístico surgió en el siglo XX con artistas como Dalí y Magritte?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 5, 'Surrealismo', this)">Surrealismo</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 5, 'Surrealismo', this)">Impresionismo</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 5, 'Surrealismo', this)">Cubismo</button>
+                <div class="quiz-result" id="cultura-q5-result"></div>
+
+                <div class="quiz-question">6. ¿Qué famosa escultura representa a un pensador de Rodin?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 6, 'El Pensador', this)">El Pensador</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 6, 'El Pensador', this)">David</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 6, 'El Pensador', this)">Venus de Milo</button>
+                <div class="quiz-result" id="cultura-q6-result"></div>
+
+                <div class="quiz-question">7. ¿En qué siglo floreció el Barroco en Europa?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 7, 'XVII', this)">XVII</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 7, 'XVII', this)">XV</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 7, 'XVII', this)">XIX</button>
+                <div class="quiz-result" id="cultura-q7-result"></div>
+
+                <div class="quiz-question">8. ¿Qué civilización inventó la escritura cuneiforme?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 8, 'Mesopotámica', this)">Mesopotámica</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 8, 'Mesopotámica', this)">Egipcia</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 8, 'Mesopotámica', this)">Griega</button>
+                <div class="quiz-result" id="cultura-q8-result"></div>
+
+                <div class="quiz-question">9. ¿Quién es el autor de "Don Quijote de la Mancha"?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 9, 'Miguel de Cervantes', this)">Miguel de Cervantes</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 9, 'Miguel de Cervantes', this)">William Shakespeare</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 9, 'Miguel de Cervantes', this)">Dante Alighieri</button>
+                <div class="quiz-result" id="cultura-q9-result"></div>
+
+                <div class="quiz-question">10. ¿Qué estilo arquitectónico se asocia con las catedrales góticas?</div>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 10, 'Gótico', this)">Gótico</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 10, 'Gótico', this)">Románico</button>
+                <button class="quiz-button" onclick="answerQuiz('cultura', 10, 'Gótico', this)">Barroco</button>
+                <div class="quiz-result" id="cultura-q10-result"></div>
+            </div>
+            <button onclick="calculateScore('cultura')">Calcular Puntuación</button>
+            <div class="quiz-score" id="cultura-score"></div>
+        </section>
+
+        <section id="quiz-personalidades" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
+            <h2>Quiz Personalidades Históricas</h2>
+            <p>Prueba tus conocimientos sobre figuras clave en la historia.</p>
+            <div class="quiz-container" id="quiz-personalidades-container">
+                <div class="quiz-question">1. ¿Quién fue el líder de la Revolución Rusa en 1917?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 1, 'Vladimir Lenin', this)">Vladimir Lenin</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 1, 'Vladimir Lenin', this)">Josef Stalin</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 1, 'Vladimir Lenin', this)">León Trotsky</button>
+                <div class="quiz-result" id="personalidades-q1-result"></div>
+
+                <div class="quiz-question">2. ¿Quién fue la reina de Egipto conocida por su alianza con Roma?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 2, 'Cleopatra', this)">Cleopatra</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 2, 'Cleopatra', this)">Nefertiti</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 2, 'Cleopatra', this)">Hatshepsut</button>
+                <div class="quiz-result" id="personalidades-q2-result"></div>
+
+                <div class="quiz-question">3. ¿Quién unificó Alemania en 1871?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 3, 'Otto von Bismarck', this)">Otto von Bismarck</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 3, 'Otto von Bismarck', this)">Guillermo II</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 3, 'Otto von Bismarck', this)">Adolf Hitler</button>
+                <div class="quiz-result" id="personalidades-q3-result"></div>
+
+                <div class="quiz-question">4. ¿Quién fue el primer presidente de EE.UU.?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 4, 'George Washington', this)">George Washington</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 4, 'George Washington', this)">Thomas Jefferson</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 4, 'George Washington', this)">Abraham Lincoln</button>
+                <div class="quiz-result" id="personalidades-q4-result"></div>
+
+                <div class="quiz-question">5. ¿Quién lideró la independencia de India de manera no violenta?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 5, 'Mahatma Gandhi', this)">Mahatma Gandhi</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 5, 'Mahatma Gandhi', this)">Jawaharlal Nehru</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 5, 'Mahatma Gandhi', this)">Subhas Chandra Bose</button>
+                <div class="quiz-result" id="personalidades-q5-result"></div>
+
+                <div class="quiz-question">6. ¿Quién fue el emperador francés que conquistó gran parte de Europa?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 6, 'Napoleón Bonaparte', this)">Napoleón Bonaparte</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 6, 'Napoleón Bonaparte', this)">Luis XIV</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 6, 'Napoleón Bonaparte', this)">Carlos V</button>
+                <div class="quiz-result" id="personalidades-q6-result"></div>
+
+                <div class="quiz-question">7. ¿Quién descubrió la penicilina?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 7, 'Alexander Fleming', this)">Alexander Fleming</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 7, 'Alexander Fleming', this)">Louis Pasteur</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 7, 'Alexander Fleming', this)">Marie Curie</button>
+                <div class="quiz-result" id="personalidades-q7-result"></div>
+
+                <div class="quiz-question">8. ¿Quién fue la heroína de la Guerra de los Cien Años?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 8, 'Juana de Arco', this)">Juana de Arco</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 8, 'Juana de Arco', this)">Isabel I</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 8, 'Juana de Arco', this)">Catalina la Grande</button>
+                <div class="quiz-result" id="personalidades-q8-result"></div>
+
+                <div class="quiz-question">9. ¿Quién fundó el Imperio Mongol?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 9, 'Genghis Khan', this)">Genghis Khan</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 9, 'Genghis Khan', this)">Kublai Khan</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 9, 'Genghis Khan', this)">Tamerlán</button>
+                <div class="quiz-result" id="personalidades-q9-result"></div>
+
+                <div class="quiz-question">10. ¿Quién fue el líder de los derechos civiles en EE.UU. conocido por "I Have a Dream"?</div>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 10, 'Martin Luther King Jr.', this)">Martin Luther King Jr.</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 10, 'Martin Luther King Jr.', this)">Malcolm X</button>
+                <button class="quiz-button" onclick="answerQuiz('personalidades', 10, 'Martin Luther King Jr.', this)">Rosa Parks</button>
+                <div class="quiz-result" id="personalidades-q10-result"></div>
+            </div>
+            <button onclick="calculateScore('personalidades')">Calcular Puntuación</button>
+            <div class="quiz-score" id="personalidades-score"></div>
+        </section>
     </main>
 
     <footer>
@@ -710,7 +930,7 @@
             }
         });
 
-        // Función de quiz
+        // Función para quizzes individuales en secciones
         function checkAnswer(sectionId, correctAnswer, button) {
             const buttons = button.parentElement.querySelectorAll('button');
             buttons.forEach(btn => btn.disabled = true);
@@ -722,6 +942,29 @@
                 result.textContent = 'Incorrecto. La respuesta es: ' + correctAnswer;
                 result.style.color = 'red';
             }
+        }
+
+        // Función para quizzes múltiples con puntuación
+        let scores = { general: 0, cultura: 0, personalidades: 0 };
+
+        function answerQuiz(quizType, questionNum, correctAnswer, button) {
+            const buttons = button.parentElement.querySelectorAll('button');
+            buttons.forEach(btn => btn.disabled = true);
+            const result = document.getElementById(`${quizType}-q${questionNum}-result`);
+            if (button.textContent === correctAnswer) {
+                result.textContent = '¡Correcto!';
+                result.style.color = 'green';
+                scores[quizType]++;
+            } else {
+                result.textContent = `Incorrecto. La respuesta es: ${correctAnswer}`;
+                result.style.color = 'red';
+            }
+        }
+
+        function calculateScore(quizType) {
+            const scoreElement = document.getElementById(`${quizType}-score`);
+            scoreElement.textContent = `Tu puntuación: ${scores[quizType]} / 10`;
+            scoreElement.style.color = scores[quizType] >= 7 ? 'green' : 'red';
         }
     </script>
 </body>
