@@ -4,7 +4,7 @@ function mostrar(seccion) {
   if (seccion === "antigua") {
     contenido.innerHTML = `
       <h2>Historia Antigua</h2>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Great_Pyramid_of_Giza.jpg" width="300">
+      <img src="images/antigua.jpg" width="300">
       <p>La historia antigua abarca desde las primeras civilizaciones hasta la caída del Imperio Romano.</p>
       <ul>
         <li>Egipto: pirámides y faraones</li>
@@ -17,7 +17,7 @@ function mostrar(seccion) {
   else if (seccion === "medieval") {
     contenido.innerHTML = `
       <h2>Edad Media</h2>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Mont_Saint-Michel_Abbaye.jpg" width="300">
+      <img src="images/medieval.jpg" width="300">
       <p>La Edad Media se caracteriza por castillos, cruzadas y el feudalismo.</p>
       <ul>
         <li>Castillos y caballeros</li>
@@ -30,7 +30,7 @@ function mostrar(seccion) {
   else if (seccion === "moderna") {
     contenido.innerHTML = `
       <h2>Historia Moderna</h2>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Storming_of_the_Bastille.jpg" width="300">
+      <img src="images/moderna.jpg" width="300">
       <p>La historia moderna incluye revoluciones, descubrimientos y el inicio del mundo contemporáneo.</p>
       <ul>
         <li>Renacimiento y descubrimientos</li>
