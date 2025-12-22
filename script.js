@@ -17,26 +17,9 @@ function mostrar(seccion) {
   else if (seccion === "medieval") {
     contenido.innerHTML = `
       <h2>Edad Media</h2>
-      <img src="imagenes/medieval.jpg" width="300">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Mont_Saint-Michel_-_2009.jpg" width="300">
       <p>La Edad Media se caracteriza por castillos, cruzadas y el feudalismo.</p>
       <ul>
         <li>Castillos y caballeros</li>
         <li>Las cruzadas</li>
         <li>El surgimiento de universidades</li>
-      </ul>
-    `;
-  }
-
-  else if (seccion === "moderna") {
-    contenido.innerHTML = `
-      <h2>Historia Moderna</h2>
-      <img src="imagenes/moderna.jpg" width="300">
-      <p>La historia moderna incluye revoluciones, descubrimientos y el inicio del mundo contemporáneo.</p>
-      <ul>
-        <li>Renacimiento y descubrimientos</li>
-        <li>Revolución Francesa</li>
-        <li>Industrialización</li>
-      </ul>
-    `;
-  }
-}
