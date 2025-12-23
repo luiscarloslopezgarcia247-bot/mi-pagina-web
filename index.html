@@ -3,278 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia del Mundo | Enciclopedia Digital</title>
+    <title>Chronos | Enciclopedia Histórica Interactiva</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    
     <style>
         :root {
-            --primary: #c0a080; /* Dorado histórico */
-            --bg-dark: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
+            --primary: #d4af37;
+            --bg: #0a0e14;
+            --card: #161b22;
+            --text: #e6edf3;
+            --accent: #58a6ff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+            overflow-x: hidden;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
-        }
-
-        /* --- NAVEGACIÓN --- */
+        /* Navegación */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+            background: rgba(10, 14, 20, 0.95); backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; border-bottom: 1px solid #30363d;
+        }
+        .logo { font-family: 'Playfair Display'; color: var(--primary); font-size: 1.8rem; text-decoration: none; }
+        .nav-links a { color: #8b949e; text-decoration: none; margin-left: 20px; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; text-align: center;
+            background: linear-gradient(rgba(10,14,20,0.7), rgba(10,14,20,0.7)), 
+                        url('https://images.unsplash.com/photo-1461360226052-72361dab9179?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-position: center;
+        }
+        .hero h1 { font-family: 'Playfair Display'; font-size: 4.5rem; color: #fff; margin-bottom: 1rem; }
+
+        /* Contenedor de Eras */
+        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+
+        .era-section {
+            background: var(--card); border-radius: 15px; padding: 30px; margin-bottom: 30px;
+            border: 1px solid #30363d; transition: transform 0.3s;
+        }
+        .era-section:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .era-title { font-family: 'Playfair Display'; color: var(--primary); font-size: 2rem; margin-bottom: 15px; }
+        
+        /* Quiz Section */
+        #quiz-container {
+            background: #1c2128; border-radius: 20px; padding: 40px; margin-top: 50px;
+            border: 2px solid var(--accent); text-align: center;
+        }
+        .quiz-option {
+            display: block; width: 100%; padding: 15px; margin: 10px 0;
+            background: #30363d; border: 1px solid #484f58; color: white;
+            border-radius: 10px; cursor: pointer; transition: 0.3s; text-align: left;
+        }
+        .quiz-option:hover { background: var(--accent); }
+        .score-display { font-size: 1.5rem; font-weight: bold; color: var(--primary); margin-top: 20px; }
+        
+        .category-btn {
+            padding: 10px 20px; margin: 5px; border-radius: 5px; border: none;
+            background: var(--primary); color: #000; font-weight: bold; cursor: pointer;
         }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        /* --- HERO SECTION --- */
-        header {
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            margin-top: 60px;
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .btn-explorer {
-            padding: 12px 30px;
-            background: var(--primary);
-            color: #000;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: 0.4s;
-            margin-top: 20px;
-        }
-
-        .btn-explorer:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(192, 160, 128, 0.4);
-        }
-
-        /* --- SECCIONES --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        section {
-            padding: 80px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .era-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            transition: 0.4s;
-        }
-
-        .era-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .era-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .era-image img {
-            width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            filter: grayscale(30%);
-            transition: 0.5s;
-        }
-
-        .era-image img:hover {
-            filter: grayscale(0%);
-        }
-
-        .timeline {
-            margin-top: 20px;
-            padding-left: 15px;
-            border-left: 2px solid var(--primary);
-        }
-
-        .timeline-item {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-
-        .year {
-            font-weight: bold;
-            color: var(--accent);
-            margin-right: 10px;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        /* --- RESPONSIVO --- */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .era-card { grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Podrías agregar un menú hamburguesa */
-        }
+        footer { text-align: center; padding: 50px; color: #8b949e; border-top: 1px solid #30363d; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo">HISTORIA MUNDIAL</a>
-        <div class="nav-links">
-            <a href="#prehistoria">Prehistoria</a>
-            <a href="#antigua">Antigua</a>
-            <a href="#medieval">Medieval</a>
-            <a href="#moderna">Moderna</a>
-            <a href="#contemporanea">Contemporánea</a>
-        </div>
-    </nav>
+<nav>
+    <a href="#" class="logo">CHRONOS</a>
+    <div class="nav-links">
+        <a href="#eras">Eras Históricas</a>
+        <a href="#quiz">Desafío Quiz</a>
+    </div>
+</nav>
 
-    <header>
-        <h1>Viaja a través del Tiempo</h1>
-        <p>Una mirada profesional a los hitos que definieron la humanidad.</p>
-        <a href="#prehistoria" class="btn-explorer">Empezar Exploración</a>
-    </header>
+<section class="hero">
+    <h1>El Legado Humano</h1>
+    <p>Explora la profundidad de nuestra historia e interactúa con el pasado.</p>
+</section>
 
-    <div class="container">
-        
-        <section id="prehistoria">
-            <div class="era-card">
-                <div class="era-content">
-                    <h2>Prehistoria</h2>
-                    <p>Desde los primeros homínidos hasta la invención de la escritura. Una era de descubrimiento, fuego y las bases de la sociedad humana.</p>
-                    <div class="timeline">
-                        <div class="timeline-item"><span class="year">2.5M a.C.</span> Primeras herramientas.</div>
-                        <div class="timeline-item"><span class="year">200k a.C.</span> Homo sapiens en África.</div>
-                        <div class="timeline-item"><span class="year">10k a.C.</span> Revolución Neolítica.</div>
-                    </div>
-                </div>
-                <div class="era-image">
-                    <img src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:240,cw:1440,ch:1080,q:80,w:1440/E5tiaKJ9VwaPpUTQRgyHh6.jpg" alt="Prehistoria">
-                </div>
-            </div>
-        </section>
-
-        <section id="antigua">
-            <div class="era-card" style="direction: rtl;"> <div class="era-content" style="direction: ltr;">
-                    <h2>Historia Antigua</h2>
-                    <p>El auge de los grandes imperios: Egipto, Grecia y Roma. La invención de la democracia, la filosofía y la ingeniería monumental.</p>
-                    <div class="timeline">
-                        <div class="timeline-item"><span class="year">3000 a.C.</span> Escritura Cuneiforme.</div>
-                        <div class="timeline-item"><span class="year">776 a.C.</span> Primeros Juegos Olímpicos.</div>
-                        <div class="timeline-item"><span class="year">476 d.C.</span> Caída del Imperio Romano.</div>
-                    </div>
-                </div>
-                <div class="era-image">
-                    <img src="https://m.media-amazon.com/images/I/910KSGHOvqL._UF1000,1000_QL80_.jpg" alt="Antigua">
-                </div>
-            </div>
-        </section>
-
-        <section id="moderna">
-            <div class="era-card">
-                <div class="era-content">
-                    <h2>Historia Moderna</h2>
-                    <p>El Renacimiento, la Ilustración y la Revolución Industrial. La ciencia y la razón comienzan a iluminar el mundo.</p>
-                    <div class="timeline">
-                        <div class="timeline-item"><span class="year">1450</span> Imprenta de Gutenberg.</div>
-                        <div class="timeline-item"><span class="year">1789</span> Revolución Francesa.</div>
-                        <div class="timeline-item"><span class="year">1850</span> Revolución Industrial.</div>
-                    </div>
-                </div>
-                <div class="era-image">
-                    <img src="https://www.dailyartmagazine.com/wp-content/uploads/2020/11/An_Experiment_on_a_Bird_in_an_Air_Pump_by_Joseph_Wright_of_Derby_1768-1024x755.jpg" alt="Moderna">
-                </div>
-            </div>
-        </section>
-
+<div class="container" id="eras">
+    <div class="era-section">
+        <h2 class="era-title">1. Prehistoria (2.5M a.C. - 3.500 a.C.)</h2>
+        <p>Dividida en Paleolítico (piedra tallada) y Neolítico (piedra pulida). El gran hito fue el descubrimiento del fuego y el paso de tribus nómadas a sociedades sedentarias gracias a la agricultura.</p>
+        <ul style="margin-top:15px; list-style: circle; padding-left: 20px; color: #8b949e;">
+            <li><strong>Paleolítico:</strong> Invención de las primeras herramientas de piedra y arte rupestre.</li>
+            <li><strong>Neolítico:</strong> Domesticación de animales y creación de la cerámica.</li>
+        </ul>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Museo Digital de Historia. Luis Carlos López García.</p>
-    </footer>
+    <div class="era-section">
+        <h2 class="era-title">2. Edad Antigua (3.500 a.C. - 476 d.C.)</h2>
+        <p>Surgen las civilizaciones fluviales (Mesopotamia, Egipto) y la cultura clásica (Grecia y Roma). Es la era de la escritura cuneiforme, la democracia ateniense y el derecho romano.</p>
+    </div>
 
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+    <section id="quiz">
+        <div id="quiz-container">
+            <h2 style="font-family:'Playfair Display'; margin-bottom: 20px;">🏛️ Desafío de Historia</h2>
+            <p id="quiz-instruction">Elige una categoría para empezar:</p>
+            <div id="categories" style="margin-top: 20px;">
+                <button class="category-btn" onclick="startQuiz('prehistoria')">Prehistoria</button>
+                <button class="category-btn" onclick="startQuiz('antigua')">Edad Antigua</button>
+                <button class="category-btn" onclick="startQuiz('medieval')">Edad Media</button>
+            </div>
+            
+            <div id="question-box" style="display:none; margin-top: 30px;">
+                <h3 id="question-text" style="margin-bottom: 20px;"></h3>
+                <div id="options-container"></div>
+            </div>
+            
+            <p id="score-text" class="score-display"></p>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2025 Chronos | Desarrollado por Luis Carlos López García</p>
+</footer>
+
+<script>
+    const quizData = {
+        prehistoria: [
+            { q: "¿Qué descubrimiento marca el fin de la prehistoria?", a: ["El fuego", "La rueda", "La escritura", "La agricultura"], correct: 2 },
+            { q: "¿Qué significa 'Neolítico'?", a: ["Piedra antigua", "Piedra nueva", "Edad de hierro", "Nómadas"], correct: 1 }
+        ],
+        antigua: [
+            { q: "¿Qué civilización construyó las pirámides de Giza?", a: ["Griegos", "Romanos", "Egiptos", "Mesopotámicos"], correct: 2 },
+            { q: "¿En qué año cayó el Imperio Romano de Occidente?", a: ["1492", "476", "1789", "300"], correct: 1 }
+        ],
+        medieval: [
+            { q: "¿Cómo se llamaba el sistema social de la Edad Media?", a: ["Capitalismo", "Feudalismo", "Democracia", "Socialismo"], correct: 1 },
+            { q: "¿Cuál fue el objetivo de las Cruzadas?", a: ["Comerciar seda", "Recuperar Tierra Santa", "Descubrir América", "Estudiar arte"], correct: 1 }
+        ]
+    };
+
+    let currentQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function startQuiz(category) {
+        currentQuestions = quizData[category];
+        currentQuestionIndex = 0;
+        score = 0;
+        document.getElementById('categories').style.display = 'none';
+        document.getElementById('quiz-instruction').innerText = "Responde correctamente:";
+        document.getElementById('question-box').style.display = 'block';
+        document.getElementById('score-text').innerText = "";
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const q = currentQuestions[currentQuestionIndex];
+        document.getElementById('question-text').innerText = q.q;
+        const container = document.getElementById('options-container');
+        container.innerHTML = "";
+        
+        q.a.forEach((opt, index) => {
+            const btn = document.createElement('button');
+            btn.className = "quiz-option";
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(index);
+            container.appendChild(btn);
         });
-    </script>
+    }
+
+    function checkAnswer(selected) {
+        if(selected === currentQuestions[currentQuestionIndex].correct) {
+            score++;
+            alert("¡Correcto! ✅");
+        } else {
+            alert("Incorrecto ❌");
+        }
+        
+        currentQuestionIndex++;
+        if(currentQuestionIndex < currentQuestions.length) {
+            showQuestion();
+        } else {
+            endQuiz();
+        }
+    }
+
+    function endQuiz() {
+        document.getElementById('question-box').style.display = 'none';
+        document.getElementById('categories').style.display = 'block';
+        document.getElementById('score-text').innerText = `Tu puntuación final: ${score} / ${currentQuestions.length}`;
+        document.getElementById('quiz-instruction').innerText = "¿Quieres intentar otra categoría?";
+    }
+</script>
+
 </body>
 </html>
