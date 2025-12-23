@@ -266,6 +266,21 @@
             margin-top: 20px;
         }
 
+        .game-clue {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        #guess-input {
+            padding: 10px;
+            margin-right: 10px;
+            width: 100px;
+        }
+
+        audio {
+            margin: 10px 0;
+        }
+
         img {
             max-width: 100%;
             height: auto;
@@ -675,11 +690,13 @@
         <section id="quizzes" class="section-card">
             <button class="back-button">Volver al Inicio</button>
             <h2>Quizzes y Minijuegos</h2>
-            <p>Elige un quiz para poner a prueba tus conocimientos:</p>
+            <p>Elige un quiz o minijuego para poner a prueba tus conocimientos:</p>
             <div class="button-container">
                 <button class="era-button" onclick="showSection('quiz-general')">Quiz Historia General</button>
                 <button class="era-button" onclick="showSection('quiz-cultura')">Quiz Cultura Histórica</button>
                 <button class="era-button" onclick="showSection('quiz-personalidades')">Quiz Personalidades Históricas</button>
+                <button class="era-button" onclick="showSection('minijuego')">Minijuego: Adivina el Año</button>
+                <button class="era-button" onclick="showSection('sounds')">Sonidos Históricos Interactivos</button>
             </div>
         </section>
 
@@ -949,6 +966,27 @@
             <button onclick="calculateScore('personalidades')">Calcular Puntuación</button>
             <div class="quiz-score" id="personalidades-score"></div>
         </section>
+
+        <section id="minijuego" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
+            <h2>Minijuego: Adivina el Año Histórico</h2>
+            <p>Adivina el año del evento descrito. Presiona "Nuevo Evento" para empezar, escribe el año y presiona "Verificar".</p>
+            <button onclick="newEvent()">Nuevo Evento</button>
+            <div id="clue" class="game-clue"></div>
+            <input type="number" id="guess-input" placeholder="Año">
+            <button onclick="checkGuess()">Verificar</button>
+            <div id="game-result" class="quiz-result"></div>
+        </section>
+
+        <section id="sounds" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
+            <h2>Sonidos Históricos Interactivos</h2>
+            <p>Escucha sonidos históricos. Haz clic para reproducir.</p>
+            <audio id="mlk-audio" src="https://archive.org/download/IHaveADream_64kb/IHaveADream.mp3"></audio>
+            <button onclick="toggleSound('mlk-audio')">Discurso de Martin Luther King ("I Have a Dream")</button>
+            <audio id="beethoven-audio" src="https://archive.org/download/beethoven-symphony-no.5/Beethoven-Symphony-No.5.mp3"></audio>
+            <button onclick="toggleSound('beethoven-audio')">Sinfonía No. 5 de Beethoven</button>
+        </section>
     </main>
 
     <footer>
@@ -1046,6 +1084,45 @@
             const scoreElement = document.getElementById(`${quizType}-score`);
             scoreElement.textContent = `Tu puntuación: ${scores[quizType]} / 10`;
             scoreElement.style.color = scores[quizType] >= 7 ? 'green' : 'red';
+        }
+
+        // Minijuego: Adivina el Año
+        const events = [
+            { clue: 'Caída del Imperio Romano de Occidente', year: 476 },
+            { clue: 'Descubrimiento de América por Colón', year: 1492 },
+            { clue: 'Revolución Francesa', year: 1789 },
+            { clue: 'Fin de la Segunda Guerra Mundial', year: 1945 },
+            { clue: 'Caída del Muro de Berlín', year: 1989 }
+        ];
+        let currentEvent = null;
+
+        function newEvent() {
+            currentEvent = events[Math.floor(Math.random() * events.length)];
+            document.getElementById('clue').textContent = `Evento: ${currentEvent.clue}`;
+            document.getElementById('guess-input').value = '';
+            document.getElementById('game-result').textContent = '';
+        }
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess-input').value);
+            const result = document.getElementById('game-result');
+            if (guess === currentEvent.year) {
+                result.textContent = '¡Correcto!';
+                result.style.color = 'green';
+            } else {
+                result.textContent = `Incorrecto. El año correcto es ${currentEvent.year}.`;
+                result.style.color = 'red';
+            }
+        }
+
+        // Sonidos interactivos
+        function toggleSound(id) {
+            const audio = document.getElementById(id);
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
         }
     </script>
 </body>
