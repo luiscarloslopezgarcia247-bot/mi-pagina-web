@@ -3,180 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia | Minimal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Chronos | Archivo Histórico Universal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #ffffff;
-            --text: #111827;
-            --accent: #3b82f6;
-            --secondary: #6b7280;
-            --line: #e5e7eb;
-            --card: #f9fafb;
+            --text: #1a1a1a;
+            --accent: #000000;
+            --secondary: #666666;
+            --border: #eeeeee;
+            --card: #fcfcfc;
         }
 
         .dark-mode {
-            --bg: #000000;
-            --text: #f3f4f6;
-            --accent: #60a5fa;
-            --secondary: #9ca3af;
-            --line: #262626;
-            --card: #0a0a0a;
+            --bg: #0a0a0a;
+            --text: #e5e5e5;
+            --accent: #ffffff;
+            --secondary: #a0a0a0;
+            --border: #1a1a1a;
+            --card: #111111;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.2s ease; }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
+            line-height: 1.8;
+            transition: background 0.4s ease;
         }
 
-        /* Navegación Minimalista */
+        /* --- NAVEGACIÓN --- */
         nav {
-            position: fixed; top: 0; width: 100%; height: 70px;
+            position: fixed; top: 0; width: 100%; height: 80px;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 5%; background: var(--bg); border-bottom: 1px solid var(--line);
+            padding: 0 5%; background: var(--bg); border-bottom: 1px solid var(--border);
             z-index: 1000;
         }
 
-        .nav-links { display: flex; gap: 2rem; }
+        .brand { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -1px; }
+
+        .nav-links { display: flex; gap: 1.5rem; }
         .nav-links button {
             background: none; border: none; color: var(--secondary);
-            cursor: pointer; font-size: 0.85rem; font-weight: 500;
-            text-transform: uppercase; letter-spacing: 0.05em;
+            cursor: pointer; font-size: 0.75rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px;
+            padding: 5px 0; border-bottom: 2px solid transparent;
         }
-        .nav-links button.active { color: var(--text); border-bottom: 2px solid var(--accent); }
+        .nav-links button:hover, .nav-links button.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
 
-        .theme-toggle {
-            cursor: pointer; background: none; border: 1px solid var(--line);
-            padding: 5px 12px; border-radius: 20px; color: var(--text); font-size: 0.7rem;
-        }
+        .controls { display: flex; align-items: center; gap: 20px; }
+        .theme-btn { cursor: pointer; background: none; border: 1px solid var(--border); padding: 5px 12px; border-radius: 4px; color: var(--text); font-size: 0.7rem; }
 
-        /* Contenido */
-        main { max-width: 800px; margin: 120px auto; padding: 0 20px; }
+        /* --- ESTRUCTURA DE PÁGINAS --- */
+        main { max-width: 900px; margin: 120px auto 100px; padding: 0 25px; }
 
-        .section { display: none; opacity: 0; transform: translateY(10px); }
-        .section.active { display: block; opacity: 1; transform: translateY(0); }
+        .page { display: none; animation: pageFade 0.4s ease forwards; }
+        .page.active { display: block; }
 
-        h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
-        h2 { font-size: 1.25rem; margin-top: 2rem; color: var(--accent); font-weight: 600; }
-        p { margin-bottom: 1.2rem; color: var(--secondary); font-size: 1.05rem; }
+        @keyframes pageFade { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- TIPOGRAFÍA Y ESTILOS --- */
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 2rem; line-height: 1.1; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin: 3rem 0 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        p { margin-bottom: 1.5rem; font-size: 1.1rem; text-align: justify; }
+        .lead { font-size: 1.4rem; color: var(--secondary); font-weight: 300; margin-bottom: 3rem; }
         
-        .timeline-box {
-            border-left: 1px solid var(--line); padding-left: 1.5rem; margin: 2rem 0;
-        }
-        .event { margin-bottom: 1.5rem; }
-        .event span { display: block; font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+        .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 40px 0; }
+        .timeline-item { background: var(--card); padding: 25px; border: 1px solid var(--border); border-radius: 8px; }
+        .year { display: block; font-weight: 700; color: var(--secondary); margin-bottom: 10px; font-size: 0.8rem; }
 
-        /* Quiz Minimalista */
-        .quiz-container {
-            background: var(--card); border: 1px solid var(--line);
-            padding: 2rem; border-radius: 8px; margin-top: 3rem;
-        }
-        .option {
-            display: block; width: 100%; text-align: left; padding: 1rem;
-            margin-top: 0.5rem; background: var(--bg); border: 1px solid var(--line);
-            cursor: pointer; border-radius: 4px; color: var(--text);
-        }
-        .option:hover { border-color: var(--accent); }
+        /* --- QUIZ --- */
+        .quiz-box { background: var(--card); border: 1px solid var(--border); padding: 40px; border-radius: 12px; margin-top: 50px; }
+        .option { display: block; width: 100%; padding: 15px; margin: 10px 0; background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 6px; cursor: pointer; text-align: left; font-size: 1rem; }
+        .option:hover { border-color: var(--accent); background: var(--card); }
 
-        footer { margin-top: 5rem; padding: 2rem; border-top: 1px solid var(--line); text-align: center; font-size: 0.8rem; color: var(--secondary); }
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border); color: var(--secondary); font-size: 0.8rem; }
 
-        @media (max-width: 600px) {
-            .nav-links { display: none; } /* En móviles puedes añadir un menú hamburguesa luego */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* En producción se añadiría un menú móvil */
+            .timeline-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <div style="font-weight: 600;">CHRONO</div>
+    <div class="brand">CHRONOS.</div>
     <div class="nav-links">
-        <button class="active" onclick="tab(event, 'inicio')">Inicio</button>
-        <button onclick="tab(event, 'antiguedad')">Antigüedad</button>
-        <button onclick="tab(event, 'media')">E. Media</button>
-        <button onclick="tab(event, 'moderna')">E. Moderna</button>
-        <button onclick="tab(event, 'contemporanea')">E. Contemporánea</button>
-        <button onclick="tab(event, 'quiz')">Quiz</button>
+        <button class="active" onclick="navigate(event, 'home')">Inicio</button>
+        <button onclick="navigate(event, 'antigua')">Antigüedad</button>
+        <button onclick="navigate(event, 'media')">Media</button>
+        <button onclick="navigate(event, 'moderna')">Moderna</button>
+        <button onclick="navigate(event, 'contemporanea')">Contemporánea</button>
+        <button onclick="navigate(event, 'quiz')">Examen</button>
     </div>
-    <button class="theme-toggle" onclick="toggleTheme()">MODE</button>
+    <div class="controls">
+        <button class="theme-btn" onclick="toggleTheme()">DARK / LIGHT</button>
+    </div>
 </nav>
 
 <main>
-    <section id="inicio" class="section active">
-        <h1>Historia de la Humanidad</h1>
-        <p>Un registro sintético de los eventos que transformaron nuestra especie. Desde las primeras herramientas de piedra hasta la inteligencia artificial.</p>
-        <div class="timeline-box">
-            <div class="event"><span>4000 a.C.</span> Invención de la escritura en Sumeria.</div>
-            <div class="event"><span>1789 d.C.</span> Estallido de la Revolución Francesa.</div>
-            <div class="event"><span>1969 d.C.</span> El ser humano llega a la Luna.</div>
+    <section id="home" class="page active">
+        <h1>El Archivo de la Civilización.</h1>
+        <p class="lead">Bienvenido a Chronos, una enciclopedia dedicada a desglosar los procesos políticos, sociales y tecnológicos que han moldeado el mundo actual.</p>
+        <p>Nuestra historia no es solo una sucesión de fechas, sino un tejido complejo de ideas, revoluciones y descubrimientos. Desde la invención del lenguaje simbólico en las cuevas del Paleolítico hasta la convergencia digital del siglo XXI, cada era ha dejado una huella indeleble en nuestra identidad colectiva.</p>
+        <p>Utilice la navegación superior para profundizar en cada periodo histórico. Cada sección ha sido curada para ofrecer una visión técnica y analítica de los hitos más relevantes.</p>
+    </section>
+
+    <section id="antigua" class="page">
+        <h1>Edad Antigua</h1>
+        <p>La Edad Antigua marca el surgimiento de las primeras civilizaciones estatales y la invención de la escritura, hito que separa la prehistoria de la historia registrada. Este periodo vio el auge de imperios en Mesopotamia, el valle del Nilo, el Indo y el Río Amarillo.</p>
+        
+        <h2>Civilizaciones Fluviales</h2>
+        <p>El sedentarismo permitió el excedente agrícola, lo que derivó en la especialización del trabajo y la estratificación social. En Mesopotamia, los sumerios desarrollaron la escritura cuneiforme y las primeras leyes codificadas (Código de Hammurabi). Mientras tanto, Egipto consolidaba un sistema teocrático bajo los faraones, destacando en arquitectura monumental y astronomía.</p>
+
+        <div class="timeline-grid">
+            <div class="timeline-item">
+                <span class="year">3500 a.C.</span>
+                <strong>Escritura Cuneiforme</strong>
+                <p>Nace en Sumeria como herramienta contable para la administración de recursos.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="year">476 d.C.</span>
+                <strong>Caída de Roma</strong>
+                <p>El fin del Imperio de Occidente marca la transición al sistema feudal medieval.</p>
+            </div>
         </div>
     </section>
 
-    <section id="media" class="section">
+    <section id="media" class="page">
         <h1>Edad Media</h1>
-        <p>Un periodo de diez siglos que comenzó con la caída de Roma (476) y terminó con el descubrimiento de América (1492).</p>
-        <h2>El Sistema Feudal</h2>
-        <p>La sociedad se organizó en torno a la tierra. Los vasallos trabajaban para los señores a cambio de protección, creando una estructura jerárquica rígida.</p>
-        <h2>Expansión Cultural</h2>
-        <p>A pesar del mito de la "época oscura", nacieron las primeras universidades (Bolonia, Oxford) y se preservó el saber clásico en los monasterios y el mundo islámico.</p>
+        <p>A menudo mal interpretada como una "época oscura", la Edad Media (siglos V al XV) fue un periodo de profunda transformación religiosa, política y el nacimiento de las naciones europeas actuales.</p>
+        
+        <h2>El Feudalismo y la Iglesia</h2>
+        <p>Tras la desintegración de la autoridad central romana, surgió el feudalismo: un sistema basado en contratos de vasallaje y la posesión de la tierra. La Iglesia Católica se convirtió en el eje vertebrador de la cultura y la política europea, preservando el conocimiento clásico en los monasterios mientras las ciudades comenzaban a resurgir a partir del siglo XI con el auge del comercio.</p>
+        
+        <h2>El Renacimiento del Siglo XII</h2>
+        <p>Este periodo vio la fundación de las primeras universidades y el desarrollo del estilo gótico. Además, el mundo islámico experimentó una Edad de Oro, traduciendo y expandiendo los textos griegos sobre medicina, matemáticas y filosofía, que luego regresarían a Europa.</p>
     </section>
 
-    <section id="moderna" class="section">
+    <section id="moderna" class="page">
         <h1>Edad Moderna</h1>
-        <p>La era del pensamiento crítico, la expansión transoceánica y el surgimiento de la ciencia moderna.</p>
-        <h2>Renacimiento y Reforma</h2>
-        <p>El arte volvió a mirar a Grecia y Roma. Figuras como Da Vinci y Miguel Ángel revolucionaron la estética, mientras Lutero desafiaba la unidad de la Iglesia.</p>
-        <h2>La Ilustración</h2>
-        <p>El "Siglo de las Luces" (XVIII) impuso la razón sobre la fe. Pensadores como Kant y Rousseau definieron los derechos ciudadanos que hoy damos por sentados.</p>
+        <p>Iniciada con la caída de Constantinopla (1453) o el viaje de Colón (1492), la Edad Moderna representa la era del Humanismo, el estallido de la ciencia empírica y la expansión global de Europa.</p>
+        
+        <h2>La Revolución Científica</h2>
+        <p>Personajes como Copérnico, Galileo y Newton desafiaron la visión aristotélica del cosmos. El método científico reemplazó a la escolástica, permitiendo avances técnicos que desembocarían en la navegación de larga distancia y una nueva comprensión de la física y la anatomía humana.</p>
+
+        <h2>Absolutismo e Ilustración</h2>
+        <p>Mientras los monarcas consolidaban el poder absoluto (como Luis XIV), surgía en los salones intelectuales la Ilustración. Pensadores como Locke, Voltaire y Montesquieu propusieron conceptos como la separación de poderes, los derechos naturales y la soberanía popular, semillas de las revoluciones que pondrían fin a esta era.</p>
     </section>
 
-    <section id="contemporanea" class="section">
+    <section id="contemporanea" class="page">
         <h1>Edad Contemporánea</h1>
-        <p>Desde finales del siglo XVIII hasta hoy. Una era definida por cambios tecnológicos acelerados y conflictos globales.</p>
-        <h2>Revolución Industrial</h2>
-        <p>La máquina de vapor cambió la producción artesanal por la masiva, dando origen al capitalismo industrial y a las grandes ciudades urbanizadas.</p>
-        <h2>Era Digital</h2>
-        <p>A finales del siglo XX, la microelectrónica e Internet crearon una sociedad global interconectada, transformando la economía en una economía de la información.</p>
+        <p>Desde la Revolución Francesa (1789) hasta la actualidad. Se caracteriza por la industrialización masiva, el auge de las democracias liberales y las mayores guerras de la historia.</p>
+        
+        <h2>Revoluciones Industriales</h2>
+        <p>El paso de la economía agraria a la mecanizada transformó la estructura familiar y social. El surgimiento del proletariado y la burguesía industrial redefinió la política, dando paso a ideologías como el socialismo, el liberalismo y el nacionalismo.</p>
+
+        <h2>El Siglo XX y la Era Digital</h2>
+        <p>El siglo pasado estuvo marcado por la tensión entre bloques ideológicos (Guerra Fría) y un avance tecnológico exponencial. La invención del transistor y posteriormente Internet han creado una sociedad de la información donde el conocimiento es el principal activo económico.</p>
     </section>
 
-    <section id="quiz" class="section">
-        <h1>Desafío Histórico</h1>
-        <div class="quiz-container" id="quiz-app">
-            <p id="q-text" style="color: var(--text); font-weight: 500;">¿Cuál de estos eventos marca el fin de la Edad Media?</p>
+    <section id="quiz" class="page">
+        <h1>Examen de Historia</h1>
+        <p>Evalúa tus conocimientos sobre los periodos analizados anteriormente.</p>
+        
+        <div class="quiz-box">
+            <h3 id="question">¿Qué sistema sociopolítico predominó en Europa durante la mayor parte de la Edad Media?</h3>
             <div id="options">
-                <button class="option" onclick="answer(false)">La Revolución Francesa</button>
-                <button class="option" onclick="answer(true)">La caída de Constantinopla</button>
-                <button class="option" onclick="answer(false)">La llegada del hombre a la Luna</button>
+                <button class="option" onclick="check(0)">Democracia Liberal</button>
+                <button class="option" onclick="check(1)">Feudalismo</button>
+                <button class="option" onclick="check(2)">Absolutismo Monárquico</button>
             </div>
+            <p id="feedback" style="margin-top:20px; font-weight: 600;"></p>
         </div>
     </section>
 </main>
 
 <footer>
-    &copy; 2025 Explorador Histórico. Diseño Minimalista.
+    &copy; 2025 Chronos Digital Archive. Elaborado con enfoque académico y minimalista.
 </footer>
 
 <script>
-    function tab(e, id) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        e.currentTarget.classList.add('active');
+    // SISTEMA DE NAVEGACIÓN (SPA)
+    function navigate(event, sectionId) {
+        // Actualizar botones de la nav
+        document.querySelectorAll('.nav-links button').forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+
+        // Cambiar de "página"
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+
+        // Scroll al inicio
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
+    // MODO OSCURO
     function toggleTheme() {
         document.body.classList.toggle('dark-mode');
     }
 
-    function answer(isCorrect) {
-        if(isCorrect) {
-            alert("Correcto. Este evento en 1453 cerró el periodo medieval.");
+    // LÓGICA DEL QUIZ
+    const questions = [
+        { q: "¿Qué sistema sociopolítico predominó en Europa durante la Edad Media?", o: ["Democracia", "Feudalismo", "Absolutismo"], c: 1 },
+        { q: "¿En qué año se produjo la caída del Imperio Romano de Occidente?", o: ["1492", "1789", "476"], c: 2 }
+    ];
+    let currentQ = 0;
+
+    function check(index) {
+        const feedback = document.getElementById('feedback');
+        if(index === questions[currentQ].c) {
+            feedback.innerHTML = "¡Correcto! Excelente análisis.";
+            feedback.style.color = "#10b981";
         } else {
-            alert("Incorrecto. Intenta de nuevo.");
+            feedback.innerHTML = "Respuesta incorrecta. Revisa el contenido de la sección.";
+            feedback.style.color = "#ef4444";
         }
     }
 </script>
