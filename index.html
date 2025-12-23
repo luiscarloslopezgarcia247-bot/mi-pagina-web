@@ -3,46 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia del Mundo - Versión Interactiva</title>
+    <title>Historia del Mundo - Periódico Antiguo</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Times New Roman', serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8;
+            background-color: #f4f1e8; /* Tono sepia para aspecto antiguo */
             color: #333;
             line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
         }
 
         body.dark-mode {
-            background-color: #1e1e1e;
+            background-color: #2c2c2c;
             color: #e0e0e0;
         }
 
         header {
-            background: linear-gradient(to bottom, #2c3e50, #4c6784);
+            background: linear-gradient(to bottom, #5a5a5a, #3a3a3a); /* Gradiente gris para encabezado antiguo */
             color: white;
             padding: 60px 20px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 5px double #000; /* Borde doble para estilo periódico */
         }
 
         h1 {
             font-size: 3em;
             margin: 0;
             font-weight: bold;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase; /* Mayúsculas para titular de periódico */
         }
 
         #home {
             max-width: 1200px;
             margin: 40px auto;
             padding: 40px;
-            background-color: #ffffff;
-            border-radius: 12px;
+            background-color: #fdfdf6; /* Fondo crema para papel antiguo */
+            border-radius: 4px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
+            border: 1px solid #ccc; /* Borde sutil para página de periódico */
         }
 
         body.dark-mode #home {
@@ -51,6 +54,8 @@
 
         #home h2 {
             color: #2c3e50;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
         }
 
         body.dark-mode #home h2 {
@@ -59,23 +64,26 @@
 
         .button-container {
             margin-top: 30px;
+            column-count: 3; /* Disposición en columnas como periódico */
+            column-gap: 20px;
         }
 
         .era-button {
             padding: 15px 30px;
-            margin: 10px;
-            background-color: #4c6784;
-            color: white;
-            border: none;
-            border-radius: 8px;
+            margin: 10px 0;
+            background-color: #e0e0e0; /* Gris claro para botones antiguos */
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 0; /* Bordes cuadrados para estilo viejo */
             font-size: 1.2em;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
+            display: block;
         }
 
         .era-button:hover {
-            background-color: #2c3e50;
-            transform: scale(1.05);
+            background-color: #ccc;
+            transform: none; /* Sin escalado para aspecto clásico */
         }
 
         main {
@@ -83,16 +91,20 @@
             margin: 40px auto;
             padding: 0 20px;
             display: none; /* Oculto inicialmente */
+            column-count: 2; /* Contenido en columnas como periódico */
+            column-gap: 40px;
+            column-rule: 1px solid #ccc; /* Línea divisoria entre columnas */
         }
 
         .section-card {
-            background-color: #ffffff;
-            border-radius: 12px;
+            background-color: #fdfdf6;
+            border-radius: 4px;
             padding: 40px;
             margin-bottom: 50px;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             display: none; /* Secciones ocultas inicialmente */
+            break-inside: avoid; /* Evitar romper columnas */
         }
 
         body.dark-mode .section-card {
@@ -104,29 +116,31 @@
         }
 
         .section-card:hover {
-            transform: translateY(-8px);
+            transform: none; /* Sin hover para estilo antiguo */
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
         .back-button {
             padding: 10px 20px;
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            background-color: #e0e0e0;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 0;
             cursor: pointer;
             margin-bottom: 20px;
             transition: background-color 0.3s;
         }
 
         .back-button:hover {
-            background-color: #495057;
+            background-color: #ccc;
         }
 
         h2, h3 {
-            color: #2c3e50;
-            border-bottom: 2px solid #4c6784;
+            color: #000;
+            border-bottom: 2px solid #000;
             padding-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
         body.dark-mode h2, body.dark-mode h3 {
@@ -136,10 +150,11 @@
         p {
             font-size: 1.1em;
             margin-bottom: 20px;
+            text-align: justify; /* Justificado para estilo periódico */
         }
 
         ul {
-            list-style-type: disc;
+            list-style-type: square; /* Cuadrados para lista antigua */
             padding-left: 20px;
             margin-bottom: 20px;
         }
@@ -151,7 +166,7 @@
 
         summary {
             font-weight: bold;
-            color: #4c6784;
+            color: #000;
             margin-bottom: 10px;
         }
 
@@ -159,56 +174,24 @@
             position: relative;
             max-width: 100%;
             margin: 20px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background-color: #4c6784;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1px;
+            border-left: 2px solid #000; /* Línea simple para timeline antigua */
+            padding-left: 20px;
         }
 
         .timeline-item {
-            padding: 10px 40px;
+            margin-bottom: 20px;
             position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            text-align: left;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: #2c3e50;
-            border: 4px solid #f0f4f8;
-            top: 15px;
+            width: 10px;
+            height: 10px;
+            left: -26px;
+            background-color: #000;
+            top: 5px;
             border-radius: 50%;
-            z-index: 1;
-        }
-
-        body.dark-mode .timeline-item::before {
-            border-color: #1e1e1e;
-        }
-
-        .timeline-item:nth-child(even)::before {
-            left: -10px;
-            right: auto;
         }
 
         .quiz {
@@ -245,63 +228,27 @@
             font-weight: bold;
         }
 
-        .quiz-item {
-            margin-bottom: 30px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-
-        body.dark-mode .quiz-item {
-            border-color: #444;
-        }
-
-        .quiz-container {
-            margin-bottom: 30px;
-        }
-
-        .quiz-score {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        .game-clue {
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-
-        #guess-input {
-            padding: 10px;
-            margin-right: 10px;
-            width: 100px;
-        }
-
-        audio {
-            margin: 10px 0;
-        }
-
         img {
             max-width: 100%;
             height: auto;
             display: block;
             margin: 20px auto 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            border: 1px solid #000; /* Borde negro para fotos antiguas */
+            filter: sepia(20%); /* Filtro sepia para aspecto viejo */
         }
 
         img:hover {
-            transform: scale(1.02);
+            transform: none; /* Sin escalado */
         }
 
         footer {
-            background-color: #2c3e50;
+            background-color: #3a3a3a;
             color: white;
             text-align: center;
             padding: 20px;
             margin-top: 40px;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            border-top: 5px double #000;
         }
 
         #dark-mode-toggle {
@@ -327,12 +274,16 @@
             padding: 10px;
             width: 80%;
             font-size: 1em;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            border-radius: 0;
+            border: 1px solid #000;
         }
 
         /* Responsivo */
         @media (max-width: 768px) {
+            main {
+                column-count: 1; /* Una columna en móvil */
+            }
+
             header {
                 padding: 40px 15px;
             }
@@ -355,21 +306,13 @@
                 font-size: 1.8em;
             }
 
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-                text-align: left;
-                left: 0 !important;
+            .timeline {
+                border-left: none;
+                padding-left: 0;
             }
 
             .timeline-item::before {
-                left: 20px !important;
-                right: auto !important;
+                left: 0;
             }
         }
     </style>
@@ -382,15 +325,15 @@
 
     <div id="home">
         <h2>Explora la Historia</h2>
-        <p>Selecciona una era histórica para ver información detallada, líneas de tiempo, quizzes y más. O prueba los quizzes especializados en historia general, cultura y personalidades históricas.</p>
+        <p>Selecciona una era histórica para ver información detallada, líneas de tiempo y más. El diseño evoca un periódico antiguo para una experiencia inmersiva.</p>
         <div class="button-container">
             <button class="era-button" data-section="prehistoria">Prehistoria</button>
             <button class="era-button" data-section="antigua">Historia Antigua</button>
             <button class="era-button" data-section="medieval">Historia Medieval</button>
             <button class="era-button" data-section="moderna">Historia Moderna</button>
             <button class="era-button" data-section="contemporanea">Historia Contemporánea</button>
+            <button class="era-button" data-section="siglo-xx">Siglo XX</button>
             <button class="era-button" data-section="glosario">Glosario</button>
-            <button class="era-button" data-section="quizzes">Quizzes y Minijuegos</button>
         </div>
     </div>
 
@@ -435,13 +378,6 @@
             </div>
             <img src="https://cdn.mos.cms.futurecdn.net/v2/t:0,l:240,cw:1440,ch:1080,q:80,w:1440/E5tiaKJ9VwaPpUTQRgyHh6.jpg" alt="Prehistoria - Evolución Humana y Pinturas Rupestres">
             <img src="https://images.ctfassets.net/mrbo2ykgx5lt/24280/5cd6334f0a420ff764ec28686d3e4517/frontiers-in-psychology-cave-art-origin-modern-language.jpg?&w=1200&h=630&fm=jpg&f=center" alt="Arte en Cuevas Prehistóricas">
-            <div class="quiz">
-                <h3>Quiz: Prehistoria</h3>
-                <div class="quiz-question">¿Cuándo apareció el Homo sapiens?</div>
-                <button class="quiz-button" onclick="checkAnswer('prehistoria', 'Hace 300,000 años', this)">Hace 300,000 años</button>
-                <button class="quiz-button" onclick="checkAnswer('prehistoria', 'Hace 300,000 años', this)">Hace 1 millón de años</button>
-                <div id="prehistoria-result" class="quiz-result"></div>
-            </div>
         </section>
 
         <section id="antigua" class="section-card">
@@ -485,13 +421,6 @@
             </div>
             <img src="https://m.media-amazon.com/images/I/910KSGHOvqL._UF1000,1000_QL80_.jpg" alt="Civilizaciones Antiguas - Egipto, Grecia y Roma">
             <img src="https://brewminate.com/wp-content/uploads/2017/12/120617-17-Egypt-Greece.png" alt="Mapa de Civilizaciones Antiguas">
-            <div class="quiz">
-                <h3>Quiz: Historia Antigua</h3>
-                <div class="quiz-question">¿Quién conquistó un vasto imperio en el siglo IV a.C.?</div>
-                <button class="quiz-button" onclick="checkAnswer('antigua', 'Alejandro Magno', this)">Alejandro Magno</button>
-                <button class="quiz-button" onclick="checkAnswer('antigua', 'Alejandro Magno', this)">Julio César</button>
-                <div id="antigua-result" class="quiz-result"></div>
-            </div>
         </section>
 
         <section id="medieval" class="section-card">
@@ -535,13 +464,6 @@
             </div>
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/KRAK_DES_CHEVALIERS_-_GAR_-_6-00.jpg" alt="Castillo de los Caballeros - Krak des Chevaliers">
             <img src="https://www.world-archaeology.com/wp-content/uploads/2013/01/1320.jpg" alt="Castillos de las Cruzadas">
-            <div class="quiz">
-                <h3>Quiz: Historia Medieval</h3>
-                <div class="quiz-question">¿Qué evento mató a un tercio de la población europea en el siglo XIV?</div>
-                <button class="quiz-button" onclick="checkAnswer('medieval', 'Peste Negra', this)">Peste Negra</button>
-                <button class="quiz-button" onclick="checkAnswer('medieval', 'Peste Negra', this)">Cruzadas</button>
-                <div id="medieval-result" class="quiz-result"></div>
-            </div>
         </section>
 
         <section id="moderna" class="section-card">
@@ -585,13 +507,6 @@
             </div>
             <img src="https://www.dailyartmagazine.com/wp-content/uploads/2020/11/An_Experiment_on_a_Bird_in_an_Air_Pump_by_Joseph_Wright_of_Derby_1768-1024x755.jpg" alt="Revolución Industrial - Experimento Científico">
             <img src="https://res.cloudinary.com/aenetworks/image/upload/c_fill,w_1200,h_630,g_auto/dpr_auto/f_auto/q_auto:eco/v1/renaissance-art-gettyimages-550119221" alt="Arte del Renacimiento">
-            <div class="quiz">
-                <h3>Quiz: Historia Moderna</h3>
-                <div class="quiz-question">¿Quién inventó la imprenta en 1450?</div>
-                <button class="quiz-button" onclick="checkAnswer('moderna', 'Johannes Gutenberg', this)">Johannes Gutenberg</button>
-                <button class="quiz-button" onclick="checkAnswer('moderna', 'Johannes Gutenberg', this)">Leonardo da Vinci</button>
-                <div id="moderna-result" class="quiz-result"></div>
-            </div>
         </section>
 
         <section id="contemporanea" class="section-card">
@@ -638,12 +553,41 @@
             </div>
             <img src="https://cdn.britannica.com/39/61239-050-2ECF086D/troops-Czechs-Soviet-Prague-forces-Czechoslovakia-reform-August-21-1968.jpg" alt="Guerra Fría - Invasión Soviética en Praga">
             <img src="https://cdn.britannica.com/12/218812-138-ABCDE048/cold-war.jpg?w=800&h=450&c=crop" alt="Mapa de la Guerra Fría">
-            <div class="quiz">
-                <h3>Quiz: Historia Contemporánea</h3>
-                <div class="quiz-question">¿Cuándo cayó el Muro de Berlín?</div>
-                <button class="quiz-button" onclick="checkAnswer('contemporanea', '1989', this)">1989</button>
-                <button class="quiz-button" onclick="checkAnswer('contemporanea', '1989', this)">1991</button>
-                <div id="contemporanea-result" class="quiz-result"></div>
+        </section>
+
+        <section id="siglo-xx" class="section-card">
+            <button class="back-button">Volver al Inicio</button>
+            <h2>Siglo XX</h2>
+            <p>El siglo XX fue testigo de grandes transformaciones globales, marcado por dos guerras mundiales, la Guerra Fría y avances tecnológicos que cambiaron el mundo para siempre.</p>
+            <h3>Primera Guerra Mundial (1914-1918)</h3>
+            <p>Conocida como la "Gran Guerra", involucró a las principales potencias europeas en un conflicto que resultó en millones de muertes y el redibujado del mapa político. Causas incluyen nacionalismo, imperialismo y alianzas complejas. Terminó con el Tratado de Versalles.</p>
+            <img src="https://www.history.com/.image/t_share/MTY5NTI2OTE4NjA5OTM5NTUx/world-war-i-battle-of-verdun.jpg" alt="Batalla de Verdún en la Primera Guerra Mundial">
+
+            <h3>Segunda Guerra Mundial (1939-1945)</h3>
+            <p>El conflicto más destructivo de la historia, involucrando a casi todas las naciones del mundo. Comenzó con la invasión alemana de Polonia y terminó con la rendición de Japón tras las bombas atómicas. Incluyó el Holocausto y el ascenso de superpotencias.</p>
+            <img src="https://www.history.com/.image/t_share/MTY5NTI2OTE4NjA5OTM5NTUx/world-war-i-battle-of-verdun.jpg" alt="Normandía en la Segunda Guerra Mundial">
+
+            <h3>Guerra Fría (1947-1991)</h3>
+            <p>Período de tensión entre EE.UU. y la URSS, caracterizado por la carrera armamentista, espionaje y conflictos proxy como la Guerra de Corea y Vietnam. Terminó con la caída del Muro de Berlín y la disolución de la URSS.</p>
+            <img src="https://cdn.britannica.com/39/61239-050-2ECF086D/troops-Czechs-Soviet-Prague-forces-Czechoslovakia-reform-August-21-1968.jpg" alt="Guerra Fría - Invasión Soviética en Praga">
+
+            <details>
+                <summary>Otros Eventos Clave</summary>
+                <ul>
+                    <li>Revolución Rusa (1917).</li>
+                    <li>Gran Depresión (1929).</li>
+                    <li>Llegada a la Luna (1969).</li>
+                    <li>Fin de la segregación racial en EE.UU. (1960s).</li>
+                    <li>Creación de la ONU (1945).</li>
+                </ul>
+            </details>
+            <div class="timeline">
+                <div class="timeline-item"><strong>1914</strong> - Inicio de la Primera Guerra Mundial.</div>
+                <div class="timeline-item"><strong>1939</strong> - Inicio de la Segunda Guerra Mundial.</div>
+                <div class="timeline-item"><strong>1945</strong> - Fin de la Segunda Guerra Mundial.</div>
+                <div class="timeline-item"><strong>1947</strong> - Inicio de la Guerra Fría.</div>
+                <div class="timeline-item"><strong>1969</strong> - Llegada a la Luna.</div>
+                <div class="timeline-item"><strong>1991</strong> - Fin de la Guerra Fría.</div>
             </div>
         </section>
 
@@ -685,307 +629,6 @@
                     <li>Globalización: Integración económica y cultural mundial.</li>
                 </ul>
             </details>
-        </section>
-
-        <section id="quizzes" class="section-card">
-            <button class="back-button">Volver al Inicio</button>
-            <h2>Quizzes y Minijuegos</h2>
-            <p>Elige un quiz o minijuego para poner a prueba tus conocimientos:</p>
-            <div class="button-container">
-                <button class="era-button" onclick="showSection('quiz-general')">Quiz Historia General</button>
-                <button class="era-button" onclick="showSection('quiz-cultura')">Quiz Cultura Histórica</button>
-                <button class="era-button" onclick="showSection('quiz-personalidades')">Quiz Personalidades Históricas</button>
-                <button class="era-button" onclick="showSection('minijuego')">Minijuego: Adivina el Año</button>
-                <button class="era-button" onclick="showSection('sounds')">Sonidos Históricos Interactivos</button>
-            </div>
-        </section>
-
-        <section id="quiz-general" class="section-card">
-            <button class="back-button">Volver al Inicio</button>
-            <h2>Quiz Historia General</h2>
-            <p>Prueba tus conocimientos generales sobre historia con este quiz de 10 preguntas. Selecciona la respuesta correcta y ve tu puntuación al final.</p>
-            <div class="quiz-container" id="quiz-general-container">
-                <div class="quiz-item">
-                    <div class="quiz-question">1. ¿Cuándo cayó el Imperio Romano de Occidente?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 1, '476 d.C.', this)">476 d.C.</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 1, '476 d.C.', this)">1453 d.C.</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 1, '476 d.C.', this)">1066 d.C.</button>
-                    <div class="quiz-result" id="general-q1-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">2. ¿Quién fue el primer emperador romano?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 2, 'Augusto', this)">Augusto</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 2, 'Augusto', this)">Julio César</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 2, 'Augusto', this)">Nerón</button>
-                    <div class="quiz-result" id="general-q2-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">3. ¿En qué año comenzó la Revolución Francesa?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 3, '1789', this)">1789</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 3, '1789', this)">1776</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 3, '1789', this)">1815</button>
-                    <div class="quiz-result" id="general-q3-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">4. ¿Qué evento marcó el inicio de la Edad Media?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 4, 'Caída del Imperio Romano', this)">Caída del Imperio Romano</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 4, 'Caída del Imperio Romano', this)">Descubrimiento de América</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 4, 'Caída del Imperio Romano', this)">Renacimiento</button>
-                    <div class="quiz-result" id="general-q4-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">5. ¿Cuándo se inventó la imprenta?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 5, '1450', this)">1450</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 5, '1450', this)">1600</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 5, '1450', this)">1200</button>
-                    <div class="quiz-result" id="general-q5-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">6. ¿Qué pandemia mató a millones en el siglo XIV?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 6, 'Peste Negra', this)">Peste Negra</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 6, 'Peste Negra', this)">Gripe Española</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 6, 'Peste Negra', this)">COVID-19</button>
-                    <div class="quiz-result" id="general-q6-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">7. ¿En qué año terminó la Segunda Guerra Mundial?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 7, '1945', this)">1945</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 7, '1945', this)">1918</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 7, '1945', this)">1939</button>
-                    <div class="quiz-result" id="general-q7-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">8. ¿Quién descubrió América en 1492?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 8, 'Cristóbal Colón', this)">Cristóbal Colón</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 8, 'Cristóbal Colón', this)">Vasco da Gama</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 8, 'Cristóbal Colón', this)">Fernando Magallanes</button>
-                    <div class="quiz-result" id="general-q8-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">9. ¿Cuándo comenzó la Primera Guerra Mundial?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 9, '1914', this)">1914</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 9, '1914', this)">1939</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 9, '1914', this)">1815</button>
-                    <div class="quiz-result" id="general-q9-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">10. ¿Qué muro cayó en 1989 simbolizando el fin de la Guerra Fría?</div>
-                    <button class="quiz-button" onclick="answerQuiz('general', 10, 'Muro de Berlín', this)">Muro de Berlín</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 10, 'Muro de Berlín', this)">Gran Muralla China</button>
-                    <button class="quiz-button" onclick="answerQuiz('general', 10, 'Muro de Berlín', this)">Muro de Adriano</button>
-                    <div class="quiz-result" id="general-q10-result"></div>
-                </div>
-            </div>
-            <button onclick="calculateScore('general')">Calcular Puntuación</button>
-            <div class="quiz-score" id="general-score"></div>
-        </section>
-
-        <section id="quiz-cultura" class="section-card">
-            <button class="back-button">Volver al Inicio</button>
-            <h2>Quiz Cultura Histórica</h2>
-            <p>Prueba tus conocimientos sobre aspectos culturales de la historia, como arte, literatura y tradiciones.</p>
-            <div class="quiz-container" id="quiz-cultura-container">
-                <div class="quiz-item">
-                    <div class="quiz-question">1. ¿Quién pintó la Mona Lisa?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 1, 'Leonardo da Vinci', this)">Leonardo da Vinci</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 1, 'Leonardo da Vinci', this)">Miguel Ángel</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 1, 'Leonardo da Vinci', this)">Pablo Picasso</button>
-                    <div class="quiz-result" id="cultura-q1-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">2. ¿Qué período cultural se asocia con el renacer del arte clásico en Europa?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 2, 'Renacimiento', this)">Renacimiento</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 2, 'Renacimiento', this)">Barroco</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 2, 'Renacimiento', this)">Romanticismo</button>
-                    <div class="quiz-result" id="cultura-q2-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">3. ¿Qué antigua civilización construyó las pirámides de Giza?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 3, 'Egipcia', this)">Egipcia</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 3, 'Egipcia', this)">Maya</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 3, 'Egipcia', this)">Inca</button>
-                    <div class="quiz-result" id="cultura-q3-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">4. ¿Quién escribió "La Ilíada" y "La Odisea"?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 4, 'Homero', this)">Homero</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 4, 'Homero', this)">Virgilio</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 4, 'Homero', this)">Sófocles</button>
-                    <div class="quiz-result" id="cultura-q4-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">5. ¿Qué movimiento artístico surgió en el siglo XX con artistas como Dalí y Magritte?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 5, 'Surrealismo', this)">Surrealismo</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 5, 'Surrealismo', this)">Impresionismo</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 5, 'Surrealismo', this)">Cubismo</button>
-                    <div class="quiz-result" id="cultura-q5-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">6. ¿Qué famosa escultura representa a un pensador de Rodin?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 6, 'El Pensador', this)">El Pensador</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 6, 'El Pensador', this)">David</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 6, 'El Pensador', this)">Venus de Milo</button>
-                    <div class="quiz-result" id="cultura-q6-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">7. ¿En qué siglo floreció el Barroco en Europa?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 7, 'XVII', this)">XVII</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 7, 'XVII', this)">XV</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 7, 'XVII', this)">XIX</button>
-                    <div class="quiz-result" id="cultura-q7-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">8. ¿Qué civilización inventó la escritura cuneiforme?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 8, 'Mesopotámica', this)">Mesopotámica</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 8, 'Mesopotámica', this)">Egipcia</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 8, 'Mesopotámica', this)">Griega</button>
-                    <div class="quiz-result" id="cultura-q8-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">9. ¿Quién es el autor de "Don Quijote de la Mancha"?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 9, 'Miguel de Cervantes', this)">Miguel de Cervantes</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 9, 'Miguel de Cervantes', this)">William Shakespeare</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 9, 'Miguel de Cervantes', this)">Dante Alighieri</button>
-                    <div class="quiz-result" id="cultura-q9-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">10. ¿Qué estilo arquitectónico se asocia con las catedrales góticas?</div>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 10, 'Gótico', this)">Gótico</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 10, 'Gótico', this)">Románico</button>
-                    <button class="quiz-button" onclick="answerQuiz('cultura', 10, 'Gótico', this)">Barroco</button>
-                    <div class="quiz-result" id="cultura-q10-result"></div>
-                </div>
-            </div>
-            <button onclick="calculateScore('cultura')">Calcular Puntuación</button>
-            <div class="quiz-score" id="cultura-score"></div>
-        </section>
-
-        <section id="quiz-personalidades" class="section-card">
-            <button class="back-button">Volver al Inicio</button>
-            <h2>Quiz Personalidades Históricas</h2>
-            <p>Prueba tus conocimientos sobre figuras clave en la historia.</p>
-            <div class="quiz-container" id="quiz-personalidades-container">
-                <div class="quiz-item">
-                    <div class="quiz-question">1. ¿Quién fue el líder de la Revolución Rusa en 1917?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 1, 'Vladimir Lenin', this)">Vladimir Lenin</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 1, 'Vladimir Lenin', this)">Josef Stalin</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 1, 'Vladimir Lenin', this)">León Trotsky</button>
-                    <div class="quiz-result" id="personalidades-q1-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">2. ¿Quién fue la reina de Egipto conocida por su alianza con Roma?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 2, 'Cleopatra', this)">Cleopatra</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 2, 'Cleopatra', this)">Nefertiti</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 2, 'Cleopatra', this)">Hatshepsut</button>
-                    <div class="quiz-result" id="personalidades-q2-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">3. ¿Quién unificó Alemania en 1871?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 3, 'Otto von Bismarck', this)">Otto von Bismarck</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 3, 'Otto von Bismarck', this)">Guillermo II</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 3, 'Otto von Bismarck', this)">Adolf Hitler</button>
-                    <div class="quiz-result" id="personalidades-q3-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">4. ¿Quién fue el primer presidente de EE.UU.?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 4, 'George Washington', this)">George Washington</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 4, 'George Washington', this)">Thomas Jefferson</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 4, 'George Washington', this)">Abraham Lincoln</button>
-                    <div class="quiz-result" id="personalidades-q4-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">5. ¿Quién lideró la independencia de India de manera no violenta?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 5, 'Mahatma Gandhi', this)">Mahatma Gandhi</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 5, 'Mahatma Gandhi', this)">Jawaharlal Nehru</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 5, 'Mahatma Gandhi', this)">Subhas Chandra Bose</button>
-                    <div class="quiz-result" id="personalidades-q5-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">6. ¿Quién fue el emperador francés que conquistó gran parte de Europa?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 6, 'Napoleón Bonaparte', this)">Napoleón Bonaparte</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 6, 'Napoleón Bonaparte', this)">Luis XIV</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 6, 'Napoleón Bonaparte', this)">Carlos V</button>
-                    <div class="quiz-result" id="personalidades-q6-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">7. ¿Quién descubrió la penicilina?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 7, 'Alexander Fleming', this)">Alexander Fleming</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 7, 'Alexander Fleming', this)">Louis Pasteur</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 7, 'Alexander Fleming', this)">Marie Curie</button>
-                    <div class="quiz-result" id="personalidades-q7-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">8. ¿Quién fue la heroína de la Guerra de los Cien Años?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 8, 'Juana de Arco', this)">Juana de Arco</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 8, 'Juana de Arco', this)">Isabel I</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 8, 'Juana de Arco', this)">Catalina la Grande</button>
-                    <div class="quiz-result" id="personalidades-q8-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">9. ¿Quién fundó el Imperio Mongol?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 9, 'Genghis Khan', this)">Genghis Khan</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 9, 'Genghis Khan', this)">Kublai Khan</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 9, 'Genghis Khan', this)">Tamerlán</button>
-                    <div class="quiz-result" id="personalidades-q9-result"></div>
-                </div>
-
-                <div class="quiz-item">
-                    <div class="quiz-question">10. ¿Quién fue el líder de los derechos civiles en EE.UU. conocido por "I Have a Dream"?</div>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 10, 'Martin Luther King Jr.', this)">Martin Luther King Jr.</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 10, 'Martin Luther King Jr.', this)">Malcolm X</button>
-                    <button class="quiz-button" onclick="answerQuiz('personalidades', 10, 'Martin Luther King Jr.', this)">Rosa Parks</button>
-                    <div class="quiz-result" id="personalidades-q10-result"></div>
-                </div>
-            </div>
-            <button onclick="calculateScore('personalidades')">Calcular Puntuación</button>
-            <div class="quiz-score" id="personalidades-score"></div>
-        </section>
-
-        <section id="minijuego" class="section-card">
-            <button class="back-button">Volver al Inicio</button>
-            <h2>Minijuego: Adivina el Año Histórico</h2>
-            <p>Adivina el año del evento descrito. Presiona "Nuevo Evento" para empezar, escribe el año y presiona "Verificar".</p>
-            <button onclick="newEvent()">Nuevo Evento</button>
-            <div id="clue" class="game-clue"></div>
-            <input type="number" id="guess-input" placeholder="Año">
-            <button onclick="checkGuess()">Verificar</button>
-            <div id="game-result" class="quiz-result"></div>
-        </section>
-
-        <section id="sounds" class="section-card">
-            <button class="back-button">Volver al Inicio</button>
-            <h2>Sonidos Históricos Interactivos</h2>
-            <p>Escucha sonidos históricos. Haz clic para reproducir.</p>
-            <audio id="mlk-audio" src="https://archive.org/download/IHaveADream_64kb/IHaveADream.mp3"></audio>
-            <button onclick="toggleSound('mlk-audio')">Discurso de Martin Luther King ("I Have a Dream")</button>
-            <audio id="beethoven-audio" src="https://archive.org/download/beethoven-symphony-no.5/Beethoven-Symphony-No.5.mp3"></audio>
-            <button onclick="toggleSound('beethoven-audio')">Sinfonía No. 5 de Beethoven</button>
         </section>
     </main>
 
@@ -1047,83 +690,6 @@
                 });
             }
         });
-
-        // Función para quizzes individuales en secciones
-        function checkAnswer(sectionId, correctAnswer, button) {
-            const buttons = button.parentElement.querySelectorAll('button');
-            buttons.forEach(btn => btn.disabled = true);
-            const result = document.getElementById(sectionId + '-result');
-            if (button.textContent === correctAnswer) {
-                result.textContent = '¡Correcto!';
-                result.style.color = 'green';
-            } else {
-                result.textContent = 'Incorrecto. La respuesta es: ' + correctAnswer;
-                result.style.color = 'red';
-            }
-        }
-
-        // Función para quizzes múltiples con puntuación
-        let scores = { general: 0, cultura: 0, personalidades: 0 };
-
-        function answerQuiz(quizType, questionNum, correctAnswer, button) {
-            const quizItem = button.closest('.quiz-item');
-            const buttons = quizItem.querySelectorAll('button');
-            buttons.forEach(btn => btn.disabled = true);
-            const result = quizItem.querySelector('.quiz-result');
-            if (button.textContent === correctAnswer) {
-                result.textContent = '¡Correcto!';
-                result.style.color = 'green';
-                scores[quizType]++;
-            } else {
-                result.textContent = `Incorrecto. La respuesta es: ${correctAnswer}`;
-                result.style.color = 'red';
-            }
-        }
-
-        function calculateScore(quizType) {
-            const scoreElement = document.getElementById(`${quizType}-score`);
-            scoreElement.textContent = `Tu puntuación: ${scores[quizType]} / 10`;
-            scoreElement.style.color = scores[quizType] >= 7 ? 'green' : 'red';
-        }
-
-        // Minijuego: Adivina el Año
-        const events = [
-            { clue: 'Caída del Imperio Romano de Occidente', year: 476 },
-            { clue: 'Descubrimiento de América por Colón', year: 1492 },
-            { clue: 'Revolución Francesa', year: 1789 },
-            { clue: 'Fin de la Segunda Guerra Mundial', year: 1945 },
-            { clue: 'Caída del Muro de Berlín', year: 1989 }
-        ];
-        let currentEvent = null;
-
-        function newEvent() {
-            currentEvent = events[Math.floor(Math.random() * events.length)];
-            document.getElementById('clue').textContent = `Evento: ${currentEvent.clue}`;
-            document.getElementById('guess-input').value = '';
-            document.getElementById('game-result').textContent = '';
-        }
-
-        function checkGuess() {
-            const guess = parseInt(document.getElementById('guess-input').value);
-            const result = document.getElementById('game-result');
-            if (guess === currentEvent.year) {
-                result.textContent = '¡Correcto!';
-                result.style.color = 'green';
-            } else {
-                result.textContent = `Incorrecto. El año correcto es ${currentEvent.year}.`;
-                result.style.color = 'red';
-            }
-        }
-
-        // Sonidos interactivos
-        function toggleSound(id) {
-            const audio = document.getElementById(id);
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
     </script>
 </body>
 </html>
