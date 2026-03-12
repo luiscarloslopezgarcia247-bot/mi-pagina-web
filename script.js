@@ -1,14 +1,16 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Alert de bienvenida
-    alert('¡Bienvenido a la página de historia! Explora las secciones para aprender más.');
+// Romantic Love Page Functionality
 
-    // Scroll suave para enlaces
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-});
+// Function to load romantic love quotes
+function loadRomanticLoveQuotes() {
+    const quotes = [
+        "Love is composed of a single soul inhabiting two bodies.",
+        "You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
+        "To love and be loved is to feel the sun from both sides."
+    ];
+
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('love-quote').innerText = randomQuote;
+}
+
+// Call the function on page load
+window.onload = loadRomanticLoveQuotes;
