@@ -1,55 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Romantic Love Page</title>
+    <title>Página de Amor para Arman</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            padding: 20px;
-            text-align: center;
+            background: linear-gradient(to right, purple, pink);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
-        header {
-            background-color: #ffcccb;
+        .heart {
+            position: absolute;
+            background: red;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: float 5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0); }
+        }
+        .gallery img {
+            width: 100px;
+            height: auto;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
             padding: 20px;
-            font-size: 24px;
+            margin: 10px;
+            background-color: white;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: 15% auto;
+            display: block;
+            width: 80%;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #FFFFFF;
+            font-size: 35px;
             font-weight: bold;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        section {
-            background-color: #ffffff;
-            border: 2px solid #ff69b4;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #ff1493;
-        }
-        p {
-            line-height: 1.6;
         }
     </style>
 </head>
 <body>
-    <header>
-        A Beautiful Love Declaration
-    </header>
-    <section>
-        <h2>To My Beloved</h2>
-        <p>From the moment our paths crossed, my world blossomed with the warmth of your love. You are the reason behind my smiles, the inspiration behind my dreams, and the joy that fills my heart.</p>
-    </section>
-    <section>
-        <h2>My Promise</h2>
-        <p>I promise to love you unconditionally, to support you in every endeavor, and to be your steadfast companion through all of life's challenges. Together, we can conquer anything that comes our way.</p>
-    </section>
-    <section>
-        <h2>Forever Together</h2>
-        <p>In your arms, I find my safe haven. With every heartbeat, I fall deeper in love. I dream of spending a lifetime with you, creating beautiful memories and cherishing each moment we share.</p>
-    </section>
+    <h1>Mi Amor para Arman</h1>
+    <div>
+        <h2>¿Por qué te amo?</h2>
+        <div class="cards">
+            <div class="card">Eres mi mejor amigo.</div>
+            <div class="card">Siempre me haces sonreír.</div>
+            <div class="card">Tu amor me inspira.</div>
+            <div class="card">Compartimos sueños juntos.</div>
+            <div class="card">Tu risa es mi melodía favorita.</div>
+            <div class="card">Eres mi razón de felicidad.</div>
+        </div>
+        <h2>Mensajes de Amor</h2>
+        <p>Te amo más de lo que las palabras pueden expresar.</p>
+        <h2>Mi Cronología</h2>
+        <p>Tu cumpleaños: <strong>4 de Julio</strong></p>
+        <h2>Promesas</h2>
+        <p>Siempre estaré a tu lado y te apoyaré.</p>
+        <h2>Galería de Fotos</h2>
+        <div class="gallery">
+            <img src="imagenes/foto1.jpg" alt="Foto 1" onclick="openModal(this)" />
+            <img src="imagenes/foto2.jpg" alt="Foto 2" onclick="openModal(this)" />
+            <img src="imagenes/foto3.jpg" alt="Foto 3" onclick="openModal(this)" />
+        </div>
+        <div id="myModal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="img01">
+        </div>
+    </div>
+    <script>
+        function openModal(img) {
+            var modal = document.getElementById('myModal');
+            var modalImg = document.getElementById('img01');
+            modal.style.display = "block";
+            modalImg.src = img.src;
+        }
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+    </script>
+    <button class="heart" onclick="alert('¡Te amo, Mamor!')"></button>
 </body>
 </html>
